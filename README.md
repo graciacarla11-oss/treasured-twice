@@ -1,6 +1,6 @@
 # Treasured Twice LLC
 
-Phase 1 foundation website for Treasured Twice LLC, a clean and family-friendly resale boutique concept.
+Phase 1 foundation website for Treasured Twice LLC, a clean and family-friendly resale boutique concept. Little Gems by Treasured² is included only as the kids, baby, and youth collection inside Treasured Twice LLC.
 
 ## What was built
 
@@ -15,10 +15,10 @@ Phase 1 foundation website for Treasured Twice LLC, a clean and family-friendly 
   - Policies
   - Admin Dashboard Placeholder
 - Opal / iridescent accent styling with a light, fresh, trustworthy resale boutique design.
-- Placeholder inventory cards and category chips for Women, Men, Kids, Baby, Accessories, Home, and Hidden Gems.
+- Placeholder inventory cards and category chips for Women, Men, Kids, Baby, Accessories, Home, and Hidden Gems, with kids items grouped under Little Gems by Treasured².
 - Treasure Chest rewards explanation.
 - Donation intake guidance with accepted and not accepted item examples.
-- Admin dashboard placeholder cards for Inventory, Orders, Rewards, Donations, Customers, Reports, and Settings.
+- Treasured Twice LLC admin dashboard placeholder cards for Inventory, Little Gems collection management, Orders, Rewards, Donations, Customers, Reports, and Settings.
 
 ## How to run the project
 

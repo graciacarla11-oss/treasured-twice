@@ -3,10 +3,10 @@ const products = [
   { name: 'Soft Playday Outfit', category: 'Little Gems • 2T–5T', price: '$5–$9', condition: 'Clean and ready' },
   { name: 'Kids Sneaker Find', category: 'Little Gems • Shoes', price: '$7–$14', condition: 'Disinfected soles' },
   { name: 'Storytime Pajama Set', category: 'Little Gems • 6–12', price: '$4–$8', condition: 'Freshly checked' },
-  { name: 'Everyday Denim', category: 'Treasured² • Adult', price: '$10–$18', condition: 'Good condition' },
-  { name: 'Statement Tote', category: 'Treasured² • Accessories', price: '$7–$15', condition: 'Light wear' },
-  { name: 'Tabletop Decor Find', category: 'Treasured² • Home', price: '$4–$16', condition: 'Ready to display' },
-  { name: 'Hidden Gem Feature', category: 'Treasured² • Hidden Gems', price: 'Special find', condition: 'Extra special' },
+  { name: 'Everyday Denim', category: 'Treasured Twice LLC • Adult', price: '$10–$18', condition: 'Good condition' },
+  { name: 'Statement Tote', category: 'Treasured Twice LLC • Accessories', price: '$7–$15', condition: 'Light wear' },
+  { name: 'Tabletop Decor Find', category: 'Treasured Twice LLC • Home', price: '$4–$16', condition: 'Ready to display' },
+  { name: 'Hidden Gem Feature', category: 'Treasured Twice LLC • Hidden Gems', price: 'Special find', condition: 'Extra special' },
 ];
 
 const productGrid = document.getElementById('product-grid');
