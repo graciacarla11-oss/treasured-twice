@@ -5,7 +5,7 @@ const required = [
   'Treasured Twice LLC',
   'Preloved Finds • Fair Prices • Hidden Gems',
   'Little Gems by Treasured²',
-  'Cleaned & Checked Promise',
+  'Cleaned &amp; Checked Promise',
   'Fair Price Promise',
   'Hidden Gems Finds',
   'Little Gems by Treasured²',
