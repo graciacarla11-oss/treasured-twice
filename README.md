@@ -1,28 +1,29 @@
 # Treasured Twice LLC
 
-Phase 1 foundation website for Treasured Twice LLC, a clean and family-friendly resale boutique concept. Little Gems by Treasured² is included only as the kids, baby, and youth collection inside Treasured Twice LLC.
+Treasured Twice LLC is the main official business name for this warm, clean, family-friendly resale boutique website preview. Little Gems by Treasured² is only a kids, baby, and youth collection inside Treasured Twice LLC; it is not the main brand.
 
-## What was built
+## Current phase
 
-- A dependency-free static website project foundation using HTML, CSS, and a small JavaScript file.
-- A major visual redesign for the homepage and main sections using a warm cream/pearl resale boutique direction instead of a dark, generic, or spam-like landing page.
-- A designed temporary text-only `Treasured Twice LLC` logo lockup with an opal shimmer mark, champagne/rose-gold border styling, and soft jade/lavender accents.
-- A responsive single-page marketing website with sections for:
-  - Home
-  - Second-Chance Finds Made Fresh
-  - Shop by Treasure Type
-  - Treasure Chest Rewards
-  - Fill-a-Bag Days
-  - About / Our Story
-  - Donations
-- Warm pearl, cream, opal, jade, lavender, blush, champagne, and rose-gold visual styling with iridescent panels, layered boutique cards, rounded corners, shimmer washes, and soft shadows.
-- Treasure type cards for Women, Men, Kids, Baby, Accessories, Home, Hidden Gems, and Little Gems by Treasured².
-- A branded Treasure Chest Rewards tracker showing five shops leading to a selected reward pick.
-- A Fill-a-Bag Days event banner with placeholder date, selected-items-only language, posted-rules reminder, and family-friendly pricing note.
+This website is a Phase 1 / early Phase 2 static preview. It is designed to show the visual direction, section structure, and future business-tool concepts before any real commerce or backend systems are connected.
+
+## What was redesigned
+
+- A major visible redesign of the homepage into a warm cream and pearl boutique resale experience with opal glow, jade, lavender, blush, champagne, and rose-gold accents.
+- A polished temporary text-based `Treasured Twice LLC` logo lockup in the header using boutique typography and an organic opal thread-style mark.
+- A stronger custom hero section with layered pearl/opal gradient washes, soft background shapes, boutique preview cards, category cues, and resale-focused trust copy.
+- Boutique-quality cards for New Arrivals, Women, Kids/Baby/Youth: Little Gems by Treasured², Home Treasures, Donation/Drop-Off, Rewards / Treasure Chest, About Treasured Twice LLC, and Preview Tools.
+- Responsive desktop, tablet, and mobile layouts with rounded cards, soft shadows, pearl/opal gradients, champagne and rose-gold borders, jade/lavender/blush washes, styled tags, and clearer spacing.
+- Trust-building copy focused on affordable second-chance treasures, clean family-friendly resale, carefully selected items, boutique feel without boutique prices, helping families shop smarter, and gently loved finds organized with care.
 
 ## Logo note
 
-The current header logo is a temporary text-only lockup for preview purposes. The real Treasured Twice LLC logo image still needs to be uploaded and connected later.
+The current logo is temporary text-based branding for preview purposes. The real Treasured Twice LLC logo image still needs to be uploaded and connected later.
+
+## Preview-only limitations
+
+No real payment processing, checkout, login, authentication, or database has been added.
+
+Inventory, rewards, customer, donation, order, and staff tools are static/browser-local placeholders only. The browser-local note preview saves only in the visitor’s current browser storage and does not create accounts, submit data, process orders, or connect to a backend.
 
 ## How to run the project
 
@@ -38,32 +39,15 @@ Start the local development server:
 npm run dev
 ```
 
-Build the production-ready files:
+Run the static project check/build command:
 
 ```bash
 npm run build
 ```
 
-## Current limitations
+## Suggested next steps
 
-- No payment processing has been added.
-- No checkout has been added.
-- No real customer login or authentication exists yet.
-- No live inventory database exists yet.
-- No real order management or customer account system exists yet.
-- Products, prices, conditions, contact information, policies, donation scheduling, and admin tools are placeholders.
-- This is still a Phase 1 static/preview-only site.
-
-## Next steps for Phase 2
-
-Recommended Phase 2 task: define the inventory workflow and photo standards before adding customer-facing shopping features.
-
-Potential Phase 2 work includes:
-
-- Upload and connect the real Treasured Twice LLC logo image.
-- Add real routing if the site needs separate URLs for each page.
-- Create an inventory data model for categories, item details, pricing, condition, photos, and availability.
-- Build an authenticated admin inventory editor only when the business is ready for secure admin access.
-- Add donation scheduling request forms and staff review status.
-- Add loyalty visit tracking for Treasure Chest Rewards.
-- Finalize contact details, store hours, return policies, and cleaning standards.
+- Upload and connect the final Treasured Twice LLC logo image.
+- Finalize store contact details, hours, donation standards, and policy language.
+- Define inventory photography and condition-note standards before adding any real inventory workflow.
+- Keep future commerce, customer, staff, or rewards features static until the business is ready for secure production systems.
