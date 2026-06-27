@@ -1,11 +1,15 @@
 :root {
   color: #263536;
-  background: #fbfdfa;
+  background: #fffdfb;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
   --mint: #d9f4ec;
-  --aqua: #cceffa;
+  --aqua: #d9f7ff;
   --opal: #efe2ff;
   --peach: #ffe7d6;
+  --rose-gold: #c98f82;
+  --blush: #ffe5ed;
+  --ivory: #fffaf1;
+  --lavender: #eadfff;
   --ink: #243436;
   --muted: #607173;
   --line: #dfecea;
@@ -26,8 +30,9 @@ body::before {
   background:
     radial-gradient(circle at 12% 10%, rgba(204, 239, 250, 0.8), transparent 28%),
     radial-gradient(circle at 86% 12%, rgba(239, 226, 255, 0.76), transparent 30%),
-    radial-gradient(circle at 50% 55%, rgba(255, 231, 214, 0.48), transparent 34%),
-    linear-gradient(135deg, #fbfdfa 0%, #f4fbf8 54%, #fff8f2 100%);
+    radial-gradient(circle at 50% 55%, rgba(255, 229, 237, 0.55), transparent 34%),
+    radial-gradient(circle at 15% 85%, rgba(201, 143, 130, 0.18), transparent 28%),
+    linear-gradient(135deg, #fffdfb 0%, #fffaf1 44%, #f9f3ff 100%);
 }
 
 .site-header {
@@ -51,7 +56,7 @@ body::before {
   background: linear-gradient(135deg, var(--mint), var(--aqua), var(--opal), var(--peach));
   color: #2e5d62;
 }
-.brand-mark { width: 2.45rem; height: 2.45rem; border-radius: 999px; }
+.brand-mark { width: 2.45rem; height: 2.45rem; border-radius: 999px; font-size: .9rem; font-weight: 900; }
 .nav { flex-wrap: wrap; justify-content: flex-end; gap: .3rem .8rem; font-size: .94rem; }
 .nav a { text-decoration: none; color: var(--muted); font-weight: 650; }
 .nav a:hover { color: var(--ink); }
@@ -78,7 +83,7 @@ h3 { margin-bottom: .55rem; }
 .opal-orb { width: 6rem; height: 6rem; border-radius: 32px; margin-bottom: 1.2rem; }
 .hero-card p, .teaser-card p, .info-card p, .product-card p, .wide-card p, .contact-card p, .policy-grid p, .admin-card p { color: var(--muted); line-height: 1.6; }
 
-.teaser-grid, .two-column, .product-grid, .policy-grid, .admin-grid { display: grid; gap: 1rem; }
+.teaser-grid, .two-column, .product-grid, .policy-grid, .admin-grid, .checkout-steps { display: grid; gap: 1rem; }
 .teaser-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); margin: 1rem 0 3rem; }
 .teaser-card, .info-card, .product-card, .wide-card, .contact-card, .policy-grid article, .admin-card { padding: 1.4rem; }
 .teaser-card svg, .info-card svg, .wide-card svg, .contact-card svg, .admin-card svg { color: #4b8a89; }
@@ -93,8 +98,10 @@ h3 { margin-bottom: .55rem; }
 .two-column { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 ul { color: var(--muted); line-height: 1.75; padding-left: 1.2rem; }
 .placeholder-note { background: #f6fbfa; border-radius: 18px; padding: .9rem; }
-.wide-card, .contact-card { display: flex; gap: 1rem; align-items: flex-start; }
+.wide-card, .contact-card, .banner-card { display: flex; gap: 1rem; align-items: flex-start; }
 .policy-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+.checkout-steps { grid-template-columns: repeat(5, minmax(0, 1fr)); }
+.checkout-steps span { background: white; border: 1px solid var(--line); border-radius: 20px; padding: 1rem; color: #42686a; font-weight: 850; text-align: center; }
 .admin-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 footer { text-align: center; padding: 2rem 1rem 3rem; color: var(--muted); }
 
@@ -102,12 +109,44 @@ footer { text-align: center; padding: 2rem 1rem 3rem; color: var(--muted); }
   .site-header { align-items: flex-start; flex-direction: column; }
   .nav { justify-content: flex-start; }
   .hero, .teaser-grid, .two-column { grid-template-columns: 1fr; }
-  .product-grid, .policy-grid, .admin-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .product-grid, .policy-grid, .admin-grid, .checkout-steps { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .banner-card { flex-direction: column; }
 }
 @media (max-width: 560px) {
   main { width: min(100% - 1rem, 1180px); }
   .site-header { padding: .9rem; }
   .nav { font-size: .86rem; }
-  .product-grid, .policy-grid, .admin-grid { grid-template-columns: 1fr; }
-  .hero-card, .teaser-card, .info-card, .product-card, .wide-card, .contact-card, .policy-grid article, .admin-card { border-radius: 22px; }
+  .product-grid, .policy-grid, .admin-grid, .checkout-steps { grid-template-columns: 1fr; }
+  .hero-card, .teaser-card, .info-card, .product-card, .wide-card, .contact-card, .banner-card, .form-card, .policy-grid article, .admin-card { border-radius: 22px; }
 }
+
+.little-gems-section {
+  background: linear-gradient(135deg, rgba(255,250,241,.72), rgba(234,223,255,.64), rgba(255,229,237,.72));
+  border: 1px solid rgba(201, 143, 130, .24);
+  border-radius: 34px;
+  padding: 2rem;
+}
+.little-gems-logo {
+  display: grid;
+  justify-items: center;
+  gap: .16rem;
+  min-width: 180px;
+  padding: 1.2rem;
+  border-radius: 30px;
+  color: #614f68;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(255,255,255,.95), transparent 34%),
+    linear-gradient(135deg, var(--ivory), var(--blush), var(--lavender), #e4fbff);
+  border: 1px solid rgba(201, 143, 130, .32);
+  box-shadow: 0 18px 42px rgba(201, 143, 130, .18);
+  text-align: center;
+}
+.little-gems-logo strong { font-size: 1.45rem; line-height: 1; letter-spacing: -.04em; }
+.little-gems-logo em { color: #9b7169; font-size: .9rem; font-style: normal; font-weight: 800; }
+.gem-symbol { display: grid; place-items: center; width: 3.4rem; height: 3.4rem; border-radius: 18px; background: rgba(255,255,255,.72); color: var(--rose-gold); font-size: 2.4rem; line-height: 1; }
+.compact { min-width: 150px; padding: 1rem; }
+.banner-card, .form-card { background: var(--card); border: 1px solid rgba(210, 229, 226, 0.95); border-radius: 28px; box-shadow: var(--shadow); padding: 1.4rem; }
+.form-card { display: grid; gap: .8rem; }
+label { display: grid; gap: .35rem; color: #42686a; font-weight: 800; }
+input, select, textarea { width: 100%; border: 1px solid var(--line); border-radius: 14px; padding: .8rem; font: inherit; background: white; color: var(--ink); }
+textarea { min-height: 5.5rem; resize: vertical; }
