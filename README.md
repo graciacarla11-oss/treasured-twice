@@ -14,7 +14,7 @@ Phase 1 foundation website for Treasured Twice LLC, a clean and family-friendly 
   - Contact
   - Policies
   - Admin Dashboard Placeholder
-- Opal / iridescent accent styling with a light, fresh, trustworthy resale boutique design.
+- Strong warm pearl, opal, lavender, ruby, champagne, and rose-gold visual styling with visible iridescent panels, shimmer borders, and boutique contrast.
 - Placeholder inventory cards and category chips for Women, Men, Kids, Baby, Accessories, Home, and Hidden Gems, with kids items grouped under Little Gems by Treasured².
 - Treasure Chest rewards explanation.
 - Donation intake guidance with accepted and not accepted item examples.
@@ -45,6 +45,7 @@ npm run build
 - No payment processing has been added.
 - No real customer login or loyalty account system exists yet.
 - No live inventory database exists yet.
+- The current header uses a temporary text-only `Treasured Twice LLC` logo; the real logo image still needs to be added later.
 - Products, prices, conditions, contact information, policies, donation scheduling, and admin tools are placeholders.
 - The Admin Dashboard is a visual placeholder only and does not store or manage data.
 
