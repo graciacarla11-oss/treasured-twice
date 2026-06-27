@@ -22,3 +22,23 @@ if (productGrid) {
     </article>
   `).join('');
 }
+
+const previewNote = document.getElementById('preview-note');
+const noteStatus = document.getElementById('note-status');
+
+if (previewNote && noteStatus) {
+  const noteKey = 'treasured-twice-preview-note';
+  const savedNote = window.localStorage.getItem(noteKey);
+
+  if (savedNote) {
+    previewNote.value = savedNote;
+    noteStatus.textContent = 'Preview note saved in this browser only.';
+  }
+
+  previewNote.addEventListener('input', () => {
+    window.localStorage.setItem(noteKey, previewNote.value);
+    noteStatus.textContent = previewNote.value
+      ? 'Preview note saved in this browser only.'
+      : 'No note saved yet.';
+  });
+}
