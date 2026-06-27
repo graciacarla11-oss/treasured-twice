@@ -171,3 +171,83 @@ footer { text-align: center; padding: 2rem 1rem 3rem; color: var(--muted); }
   .product-grid, .admin-grid { grid-template-columns: 1fr; }
   .hero-card, .teaser-card, .info-card, .product-card, .wide-card, .contact-card, .banner-card, .form-card, .admin-card, .opal-panel, .opal-heading { border-radius: 22px; }
 }
+
+/* Jeweled logo treatment inspired by the Treasured Twice reference artwork. */
+:root {
+  --fancy-serif: "Cinzel", Georgia, serif;
+  --script: "Great Vibes", "Brush Script MT", cursive;
+}
+
+.brand-lockup { display: flex; align-items: center; gap: .75rem; }
+.brand-name, h1, h2 { font-family: var(--fancy-serif); }
+.brand-name { display: block; text-transform: uppercase; letter-spacing: .12em; }
+.brand-tag { display: block; font-family: var(--fancy-serif); letter-spacing: .16em; text-transform: uppercase; }
+
+.logo-orbit { position: relative; display: grid; place-items: center; border-radius: 50%; isolation: isolate; }
+.logo-orbit::before {
+  content: "";
+  position: absolute;
+  inset: 8%;
+  border: 1.8px solid rgba(190, 125, 114, .86);
+  border-left-color: rgba(255, 246, 233, .2);
+  border-bottom-color: rgba(159, 31, 70, .35);
+  border-radius: 50%;
+  box-shadow: 0 0 18px rgba(213, 166, 111, .34), inset 0 0 16px rgba(255,255,255,.36);
+}
+.logo-initials {
+  position: relative;
+  z-index: 2;
+  font-family: var(--fancy-serif);
+  font-size: 2.75rem;
+  font-weight: 900;
+  letter-spacing: -.18em;
+  padding-right: .18em;
+  background: linear-gradient(100deg, #fff4e5 0%, #c87970 28%, #ffd9bd 47%, #8d3d55 70%, #ffe9d1 100%);
+  -webkit-background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 2px 0 rgba(27, 21, 27, .35)) drop-shadow(0 0 16px rgba(255, 219, 193, .38));
+}
+.logo-orbit.mini { width: 62px; height: 62px; flex: 0 0 62px; }
+.logo-orbit.mini .logo-initials { font-size: 1.35rem; }
+.hero-logo { display: grid; justify-items: center; width: min(360px, 100%); margin-bottom: 1.2rem; }
+.hero-orbit { width: min(260px, 72vw); height: min(260px, 72vw); }
+.hero-orbit .logo-initials { font-size: clamp(4.6rem, 14vw, 8rem); }
+.logo-wordmark { display: grid; justify-items: center; margin: -1.8rem 0 0; color: var(--onyx); text-align: center; }
+.logo-wordmark span { font-family: var(--fancy-serif); font-size: clamp(2.4rem, 7vw, 4.7rem); letter-spacing: .28em; text-transform: uppercase; line-height: .92; color: transparent; background: linear-gradient(100deg, #6f3341, #ffc7b4 35%, #8d3d55 60%, #ffe1c8); -webkit-background-clip: text; filter: drop-shadow(0 5px 12px rgba(90,55,72,.2)); }
+.logo-wordmark em { font-family: var(--script); font-size: clamp(3rem, 8vw, 5.8rem); line-height: .68; color: #a95d68; font-style: normal; text-shadow: 0 2px 0 rgba(255,255,255,.78), 0 0 20px rgba(255, 224, 236, .9); }
+.logo-wordmark small { font-family: var(--fancy-serif); letter-spacing: .7em; color: #6b4b58; font-weight: 700; }
+
+.gem, .sparkle { position: absolute; z-index: 3; }
+.gem { width: 26px; height: 26px; transform: rotate(45deg); border-radius: 35% 8% 35% 8%; border: 1px solid rgba(255,255,255,.72); box-shadow: inset 6px 6px 12px rgba(255,255,255,.48), inset -7px -8px 12px rgba(42, 24, 38, .35), 0 8px 18px rgba(60, 26, 50, .24); }
+.ruby-gem, .g1 { top: 12%; right: 20%; background: linear-gradient(135deg, #ff98aa, #9f1f46 45%, #4b1029); }
+.opal-gem, .g2 { right: 4%; top: 40%; width: 40px; height: 52px; background: radial-gradient(circle at 28% 24%, #fff, transparent 22%), linear-gradient(135deg, #c7f5ee, #ffe0ec 42%, #b8a5ff 70%, #fff0c9); border-radius: 50%; }
+.amethyst-gem, .g3 { right: 18%; bottom: 13%; background: linear-gradient(135deg, #d9b4ff, #6f4aa2 55%, #34194d); }
+.pearl-gem { left: 9%; bottom: 28%; background: linear-gradient(135deg, #fff, #ffe0ec 48%, #d5a66f); border-radius: 50%; }
+.logo-orbit.mini .gem { width: 10px; height: 10px; }
+.logo-orbit.mini .g2 { width: 14px; height: 18px; }
+.sparkle { color: #fff8dc; text-shadow: 0 0 8px #fff, 0 0 18px #ff9e5f, 0 0 34px #fff0c9; animation: twinkle 1.8s ease-in-out infinite alternate; }
+.s1 { left: 12%; top: 18%; font-size: 2rem; }
+.s2 { right: 9%; bottom: 30%; font-size: 1.35rem; animation-delay: .55s; }
+.logo-orbit.mini .sparkle { font-size: 1rem; left: 2%; top: 8%; }
+
+.card-logo-strip { display: flex; gap: .35rem; margin-bottom: .8rem; }
+.gem-stone { color: var(--champagne); filter: drop-shadow(0 0 8px rgba(213,166,111,.7)); }
+.gem-stone.pink { color: var(--ruby); }
+.gem-stone.violet { color: var(--amethyst); }
+.tiny-sparkles { color: var(--champagne); letter-spacing: .4em; font-size: .85rem; }
+.shimmer-card::after, .opal-panel::after {
+  content: "";
+  position: absolute;
+  inset: -30% -60%;
+  pointer-events: none;
+  background: linear-gradient(105deg, transparent 38%, rgba(255,255,255,.58) 48%, rgba(255,240,201,.5) 50%, transparent 60%);
+  transform: translateX(-45%);
+  animation: shimmerSweep 5.5s ease-in-out infinite;
+}
+
+@keyframes shimmerSweep { 0%, 45% { transform: translateX(-45%); opacity: 0; } 62% { opacity: .8; } 100% { transform: translateX(45%); opacity: 0; } }
+@keyframes twinkle { from { transform: scale(.82) rotate(-8deg); opacity: .65; } to { transform: scale(1.15) rotate(8deg); opacity: 1; } }
+
+@media (max-width: 900px) { .hero-logo { margin-inline: auto; } }
+@media (max-width: 560px) { .logo-orbit.mini { width: 52px; height: 52px; flex-basis: 52px; } .brand-tag { letter-spacing: .08em; } }
+.classic-tagline { font-family: var(--fancy-serif); color: #6b4b58; font-weight: 700; letter-spacing: .18em; text-transform: uppercase; }
