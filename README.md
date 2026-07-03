@@ -1,6 +1,6 @@
 # Treasured Twice LLC
 
-Treasured Twice LLC is the main official business name for this warm, clean, family-friendly resale boutique website preview. Little Gems by Treasured² is only a kids, baby, and youth collection inside Treasured Twice LLC; it is not the main brand.
+Treasured Twice LLC is the main official business name for this Preloved, fair priced, family-friendly resale retail website preview. Little Gems by Treasured Twice is only a kids, baby, and youth collection inside Treasured Twice LLC; it is not the main brand.
 
 ## Current phase
 
@@ -9,11 +9,11 @@ This website is a Phase 1 / early Phase 2 static preview. It is designed to show
 ## What was redesigned
 
 - A major visible redesign of the homepage into a warm cream and pearl boutique resale experience with opal glow, jade, lavender, blush, champagne, and rose-gold accents.
-- A polished temporary text-based `Treasured Twice LLC` logo lockup in the header using boutique typography and an organic opal thread-style mark.
-- A stronger custom hero section with layered pearl/opal gradient washes, soft background shapes, boutique preview cards, category cues, and resale-focused trust copy.
+- A polished elegant modern text-based `Treasured Twice LLC` logo lockup in the header using medium typography and an organic opal thread-style mark.
+- A stronger custom hero section with layered pearl/opal gradient washes, soft background gem shapes, boutique preview cards, category cues, and resale-focused trust copy.
 - Boutique-quality cards for New Arrivals, Women, Kids/Baby/Youth: Little Gems by Treasured², Home Treasures, Donation/Drop-Off, Rewards / Treasure Chest, About Treasured Twice LLC, and Preview Tools.
-- Responsive desktop, tablet, and mobile layouts with rounded cards, soft shadows, pearl/opal gradients, champagne and rose-gold borders, jade/lavender/blush washes, styled tags, and clearer spacing.
-- Trust-building copy focused on affordable second-chance treasures, clean family-friendly resale, carefully selected items, boutique feel without boutique prices, helping families shop smarter, and gently loved finds organized with care.
+- Responsive desktop, tablet, and mobile layouts with rounded cards, soft shadows, pearl/opal gradients, champagne and rose-gold borders, jade translucent/lavender/opal washes, styled tags, and clearer spacing.
+- Trust-building copy focused on affordable pre loved pieces with purpose , fair priced resale, loved once treasured again, fresh welcoming, high end feel ,pre loved finds,clean ,sanitized and organized with care.
 
 ## Logo note
 
