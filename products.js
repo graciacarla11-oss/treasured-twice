@@ -7,6 +7,7 @@ window.TT_PRODUCTS = [
   { sku:'BAG-001', title:'Everyday Crossbody Bag', category:'Bags', price:14, size:'OS', brand:'Mossimo', condition:'Good Condition', status:'Sold', photo:'✧', notes:'Light corner wear disclosed.' },
   { sku:'SHOE-001', title:'Black Ankle Boots', category:'Shoes', price:22, size:'8', brand:'Time and Tru', condition:'Great Condition', status:'Available', photo:'◈', notes:'Clean soles, minor creasing.' },
   { sku:'ACC-001', title:'Amethyst Earring Set', category:'Accessories', price:6, size:'OS', brand:'Unbranded', condition:'New With Tags', status:'Available', photo:'✶', notes:'Carded accessory find.' },
+  { sku:'TT-006', title:'Everyday Soft Tee', category:'Everyday Finds', price:6, size:'L', brand:'Old Navy', condition:'Good Condition', status:'Available', photo:'◇', notes:'Affordable everyday hidden gem.' },
   { sku:'TT-002', title:'Men’s Flannel Shirt', category:'Men', price:13, size:'XL', brand:'Wrangler', condition:'Great Condition', status:'Available', photo:'◇', notes:'Steamed and odor-checked.' },
   { sku:'TT-003', title:'New With Tags Blouse', category:'New With Tags', price:15, size:'S', brand:'Loft', condition:'New With Tags', status:'Available', photo:'✦', notes:'Original tag attached.' },
   { sku:'TT-004', title:'Fill-a-Bag Preview Tee', category:'Fill-a-Bag Day', price:3, size:'M', brand:'Mixed', condition:'Good Condition', status:'Available', photo:'◇', notes:'Example event item.' },

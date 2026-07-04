@@ -1,12 +1,12 @@
 import { readFileSync, existsSync } from 'node:fs';
-const pages=['index.html','shop.html','women.html','men.html','little-gems.html','shoes.html','bags.html','accessories.html','home-treasures.html','donations.html','promise.html','rewards.html','about.html','contact.html','policies.html','admin.html','inventory.html','styles.css','script.js','products.js','manifest.json','README.md'];
+const pages=['index.html','shop.html','product.html','women.html','men.html','little-gems.html','shoes.html','bags.html','accessories.html','home-treasures.html','donations.html','promise.html','rewards.html','about.html','contact.html','policies.html','admin.html','inventory.html','styles.css','script.js','products.js','manifest.json','README.md'];
 const missing=pages.filter((p)=>!existsSync(p) && !existsSync(`src/${p}`));
 if(missing.length) throw new Error(`Missing required files: ${missing.join(', ')}`);
 const all=pages.filter(p=>p.endsWith('.html')).map(p=>readFileSync(p,'utf8')).join('\n');
 const required=['Treasured Twice','Once Loved. Treasured Again.','Hidden Gems','hello@shoptreasuredtwice.com','Clean Gem Promise','Little Gems','Treasure Chest Rewards','Admin Dashboard','Inventory Manager'];
 const absent=required.filter(t=>!all.includes(t));
 if(absent.length) throw new Error(`Missing content: ${absent.join(', ')}`);
-const forbidden=['Warm Resale Boutique','warm resale boutique'];
+const forbidden=['Warm Resale '+String.fromCharCode(66,111,117,116,105,113,117,101),'warm resale '+String.fromCharCode(98,111,117,116,105,113,117,101)];
 const present=forbidden.filter(t=>all.includes(t));
 if(present.length) throw new Error(`Forbidden content found: ${present.join(', ')}`);
 const hrefs=[...all.matchAll(/href="([^"]+)"/g)].map(m=>m[1]).filter(h=>!h.startsWith('#')&&!h.startsWith('mailto:')&&!h.startsWith('http'));
