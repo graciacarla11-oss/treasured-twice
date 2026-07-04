@@ -1,5 +1,5 @@
 import { readFileSync, existsSync } from 'node:fs';
-const pages=['index.html','shop.html','women.html','men.html','little-gems.html','shoes.html','bags.html','accessories.html','home-treasures.html','donations.html','promise.html','rewards.html','about.html','contact.html','policies.html','admin.html','inventory.html','styles.css','script.js','products.js','manifest.json','README.md'];
+const pages=['index.html','shop.html','women.html','men.html','little-gems.html','shoes.html','bags.html','accessories.html','home-treasures.html','donations.html','promise.html','rewards.html','about.html','contact.html','policies.html','admin.html','inventory.html','product.html','styles.css','script.js','products.js','manifest.json','README.md'];
 const missing=pages.filter((p)=>!existsSync(p) && !existsSync(`src/${p}`));
 if(missing.length) throw new Error(`Missing required files: ${missing.join(', ')}`);
 const all=pages.filter(p=>p.endsWith('.html')).map(p=>readFileSync(p,'utf8')).join('\n');
@@ -10,6 +10,6 @@ const forbidden=['Warm Resale Boutique','warm resale boutique'];
 const present=forbidden.filter(t=>all.includes(t));
 if(present.length) throw new Error(`Forbidden content found: ${present.join(', ')}`);
 const hrefs=[...all.matchAll(/href="([^"]+)"/g)].map(m=>m[1]).filter(h=>!h.startsWith('#')&&!h.startsWith('mailto:')&&!h.startsWith('http'));
-const broken=hrefs.filter(h=>!existsSync(h));
+const broken=hrefs.filter(h=>!existsSync(h.split('?')[0]));
 if(broken.length) throw new Error(`Broken links: ${[...new Set(broken)].join(', ')}`);
 console.log('Static site QA check passed.');
