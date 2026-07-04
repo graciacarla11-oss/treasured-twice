@@ -1,53 +1,34 @@
 # Treasured Twice LLC
 
-Treasured Twice LLC is the main official business name for this Preloved, fair priced, family-friendly resale retail website preview. Little Gems by Treasured Twice is only a kids, baby, and youth collection inside Treasured Twice LLC; it is not the main brand.
+Static, mobile-first brand and platform preview for **Treasured Twice LLC**.
 
-## Current phase
+- Public brand: Treasured Twice
+- Domain planned: shoptreasuredtwice.com
+- Email: hello@shoptreasuredtwice.com
+- Tagline: Once Loved. Treasured Again.
+- Secondary phrase: Hidden Gems
 
-This website is a Phase 1 / early Phase 2 static preview. It is designed to show the visual direction, section structure, and future business-tool concepts before any real commerce or backend systems are connected.
+## Included pages
 
-## What was redesigned
+Home, Shop, Women, Men, Little Gems, Shoes, Bags, Accessories, Home Treasures, Donations / Item Contributions, Clean Gem Promise, Rewards, About, Contact, Policies, Admin Dashboard, and Inventory Manager.
 
-- A major visible redesign of the homepage into a warm cream and pearl boutique resale experience with opal glow, jade, lavender, blush, champagne, and rose-gold accents.
-- A polished elegant modern text-based `Treasured Twice LLC` logo lockup in the header using medium typography and an organic opal thread-style mark.
-- A stronger custom hero section with layered pearl/opal gradient washes, soft background gem shapes, boutique preview cards, category cues, and resale-focused trust copy.
-- Boutique-quality cards for New Arrivals, Women, Kids/Baby/Youth: Little Gems by Treasured², Home Treasures, Donation/Drop-Off, Rewards / Treasure Chest, About Treasured Twice LLC, and Preview Tools.
-- Responsive desktop, tablet, and mobile layouts with rounded cards, soft shadows, pearl/opal gradients, champagne and rose-gold borders, jade translucent/lavender/opal washes, styled tags, and clearer spacing.
-- Trust-building copy focused on affordable pre loved pieces with purpose , fair priced resale, loved once treasured again, fresh welcoming, high end feel ,pre loved finds,clean ,sanitized and organized with care.
+## Current limitations
 
-## Logo note
+This is a simple static preview. No payment processing, Stripe, Shopify, Wix, checkout, login, authentication, backend database, or custom domain connection has been added.
 
-The current logo is temporary text-based branding for preview purposes. The real Treasured Twice LLC logo image still needs to be uploaded and connected later.
+Forms, request bag, and inventory manager save only in the current browser through localStorage for preview purposes.
 
-## Preview-only limitations
-
-No real payment processing, checkout, login, authentication, or database has been added.
-
-Inventory, rewards, customer, donation, order, and staff tools are static/browser-local placeholders only. The browser-local note preview saves only in the visitor’s current browser storage and does not create accounts, submit data, process orders, or connect to a backend.
-
-## How to run the project
-
-Install dependencies:
+## Run locally
 
 ```bash
 npm install
-```
-
-Start the local development server:
-
-```bash
 npm run dev
 ```
 
-Run the static project check/build command:
+Open http://localhost:4173.
+
+## Check the site
 
 ```bash
 npm run build
 ```
-
-## Suggested next steps
-
-- Upload and connect the final Treasured Twice LLC logo image.
-- Finalize store contact details, hours, donation standards, and policy language.
-- Define inventory photography and condition-note standards before adding any real inventory workflow.
-- Keep future commerce, customer, staff, or rewards features static until the business is ready for secure production systems.
