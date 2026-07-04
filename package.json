@@ -1,13 +1,1 @@
-{
-  "name": "treasured-twice",
-  "version": "0.1.0",
-  "private": true,
-  "description": "Phase 1 foundation website for Treasured Twice LLC resale boutique.",
-  "scripts": {
-    "start": "python3 -m http.server 4173",
-    "dev": "python3 -m http.server 4173",
-    "build": "node scripts/check-site.mjs"
-  },
-  "dependencies": {},
-  "devDependencies": {}
-}
+{"name":"treasured-twice","version":"0.1.0","private":true,"description":"Static brand and platform preview for Treasured Twice LLC.","scripts":{"start":"python3 -m http.server 4173","dev":"python3 -m http.server 4173","build":"node scripts/check-site.mjs"},"dependencies":{},"devDependencies":{}}

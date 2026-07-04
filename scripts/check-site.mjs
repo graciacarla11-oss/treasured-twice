@@ -1,35 +1,15 @@
-import { readFileSync } from 'node:fs';
-
-const html = readFileSync('index.html', 'utf8');
-const required = [
-  'Treasured Twice LLC',
-  'Preloved Finds • Fair Prices • Hidden Gems',
-  'Little Gems by Treasured²',
-  'Cleaned &amp; Checked Promise',
-  'Fair Price Promise',
-  'Hidden Gems Finds',
-  'Little Gems by Treasured²',
-  'Treasure Chest Rewards',
-  'Fill-a-Bag Days',
-  'Donation With Purpose',
-  'Treasured Twice LLC staff tools foundation',
-];
-const missing = required.filter((text) => !html.includes(text));
-if (missing.length) {
-  console.error(`Missing required content: ${missing.join(', ')}`);
-  process.exit(1);
-}
-
-const forbiddenMainNames = [
-  'Little Gems, a Treasured Twice LLC boutique',
-  'Treasured² LLC',
-  'Treasured² Little Gems',
-  'Twice Treasured',
-];
-const presentForbiddenNames = forbiddenMainNames.filter((text) => html.includes(text));
-if (presentForbiddenNames.length) {
-  console.error(`Forbidden main business name found: ${presentForbiddenNames.join(', ')}`);
-  process.exit(1);
-}
-
-console.log('Static site content check passed.');
+import { readFileSync, existsSync } from 'node:fs';
+const pages=['index.html','shop.html','women.html','men.html','little-gems.html','shoes.html','bags.html','accessories.html','home-treasures.html','donations.html','promise.html','rewards.html','about.html','contact.html','policies.html','admin.html','inventory.html','styles.css','script.js','products.js','manifest.json','README.md'];
+const missing=pages.filter((p)=>!existsSync(p) && !existsSync(`src/${p}`));
+if(missing.length) throw new Error(`Missing required files: ${missing.join(', ')}`);
+const all=pages.filter(p=>p.endsWith('.html')).map(p=>readFileSync(p,'utf8')).join('\n');
+const required=['Treasured Twice','Once Loved. Treasured Again.','Hidden Gems','hello@shoptreasuredtwice.com','Clean Gem Promise','Little Gems','Treasure Chest Rewards','Admin Dashboard','Inventory Manager'];
+const absent=required.filter(t=>!all.includes(t));
+if(absent.length) throw new Error(`Missing content: ${absent.join(', ')}`);
+const forbidden=['Warm Resale Boutique','warm resale boutique'];
+const present=forbidden.filter(t=>all.includes(t));
+if(present.length) throw new Error(`Forbidden content found: ${present.join(', ')}`);
+const hrefs=[...all.matchAll(/href="([^"]+)"/g)].map(m=>m[1]).filter(h=>!h.startsWith('#')&&!h.startsWith('mailto:')&&!h.startsWith('http'));
+const broken=hrefs.filter(h=>!existsSync(h));
+if(broken.length) throw new Error(`Broken links: ${[...new Set(broken)].join(', ')}`);
+console.log('Static site QA check passed.');

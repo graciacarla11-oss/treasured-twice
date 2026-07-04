@@ -1,0 +1,37 @@
+const products = window.TT_PRODUCTS || [];
+const categories = ['All', ...new Set(products.map((p) => p.category))];
+const bagKey = 'treasured-twice-request-bag';
+const inventoryKey = 'treasured-twice-owner-inventory';
+const donationKey = 'treasured-twice-donation-requests';
+const contactKey = 'treasured-twice-contact-requests';
+
+function getBag(){ return JSON.parse(localStorage.getItem(bagKey) || '[]'); }
+function setBag(items){ localStorage.setItem(bagKey, JSON.stringify(items)); updateBagCount(); }
+function updateBagCount(){ document.querySelectorAll('[data-bag-count]').forEach((el)=>{ el.textContent = getBag().length; }); }
+function money(v){ return `$${Number(v || 0).toFixed(2)}`; }
+function appProducts(){ return JSON.parse(localStorage.getItem(inventoryKey) || 'null') || products; }
+function saveProducts(items){ localStorage.setItem(inventoryKey, JSON.stringify(items)); }
+function requestItem(sku){ const item = appProducts().find((p)=>p.sku===sku); if(!item) return; const bag = getBag(); if(!bag.find((p)=>p.sku===sku)) bag.push(item); setBag(bag); alert(`${item.title} was added to your request bag preview.`); }
+window.requestItem = requestItem;
+
+function productCard(p){ return `<article class="product-card" data-category="${p.category}" data-status="${p.status}">
+  <div class="product-photo" aria-label="Product photo placeholder">${p.photo || '◇'}</div>
+  <div class="product-meta"><span>${p.sku}</span><span class="status ${p.status.toLowerCase()}">${p.status}</span></div>
+  <h3>${p.title}</h3><p class="category-line">${p.category}</p>
+  <dl><div><dt>Price</dt><dd>${money(p.price)}</dd></div><div><dt>Size</dt><dd>${p.size}</dd></div><div><dt>Brand</dt><dd>${p.brand}</dd></div><div><dt>Condition</dt><dd>${p.condition}</dd></div></dl>
+  <p>${p.notes || ''}</p><button class="button primary compact" ${p.status==='Sold'?'disabled':''} onclick="requestItem('${p.sku}')">Add to Request Bag</button>
+</article>`; }
+
+function renderShop(){ const grid=document.querySelector('[data-product-grid]'); if(!grid) return; const search=document.querySelector('[data-search]'); const filter=document.querySelector('[data-filter]'); if(filter && !filter.dataset.ready){ filter.innerHTML = categories.map((c)=>`<option>${c}</option>`).join(''); filter.dataset.ready='true'; }
+ const q=(search?.value||'').toLowerCase(); const cat=filter?.value||'All'; const filtered=appProducts().filter((p)=>(cat==='All'||p.category===cat) && [p.sku,p.title,p.category,p.brand,p.condition,p.status].join(' ').toLowerCase().includes(q)); grid.innerHTML=filtered.map(productCard).join('') || '<p>No matching gems found.</p>'; }
+
+function renderBag(){ const el=document.querySelector('[data-request-bag]'); if(!el) return; const bag=getBag(); el.innerHTML = bag.length ? bag.map((p)=>`<li>${p.sku} — ${p.title} <button data-remove="${p.sku}">Remove</button></li>`).join('') : '<li>Your saved request bag is empty.</li>'; el.querySelectorAll('[data-remove]').forEach((b)=>b.addEventListener('click',()=>{setBag(getBag().filter((p)=>p.sku!==b.dataset.remove)); renderBag();})); }
+
+function renderAdmin(){ const cards=document.querySelector('[data-dashboard-cards]'); if(!cards) return; const items=appProducts(); const donations=JSON.parse(localStorage.getItem(donationKey)||'[]'); const contacts=JSON.parse(localStorage.getItem(contactKey)||'[]'); const sold=items.filter(p=>p.status==='Sold'); const available=items.filter(p=>p.status==='Available'); const reserved=items.filter(p=>p.status==='Reserved'); const value=available.reduce((s,p)=>s+Number(p.price||0),0); const profit=items.reduce((s,p)=>s+(Number(p.price||0)-Number(p.cost||0)),0); const data=[['Total inventory',items.length],['Available items',available.length],['Reserved items',reserved.length],['Sold items',sold.length],['Estimated inventory value',money(value)],['Estimated profit',money(profit)],['Donation requests',donations.length],['Customer requests',contacts.length + getBag().length],['Daily tasks','5 open'],['Rewards members','Preview'],['Low inventory categories','Designer Gems']]; cards.innerHTML=data.map(([k,v])=>`<article class="dashboard-card"><span>${k}</span><strong>${v}</strong></article>`).join(''); }
+
+function nextSku(cat){ const prefixes={'Little Gems Newborn–12':'LG','Home Treasures':'HOME','Designer Gems':'DG','Community Gems':'CG','Bags':'BAG','Shoes':'SHOE','Accessories':'ACC'}; const prefix=prefixes[cat]||'TT'; const nums=appProducts().filter(p=>p.sku.startsWith(prefix+'-')).map(p=>Number(p.sku.split('-')[1])||0); return `${prefix}-${String(Math.max(0,...nums)+1).padStart(3,'0')}`; }
+function renderInventory(){ const form=document.querySelector('[data-inventory-form]'); const table=document.querySelector('[data-inventory-table]'); if(!form||!table) return; const items=appProducts(); table.innerHTML=items.map((p)=>`<tr><td>${p.sku}</td><td>${p.title}</td><td>${p.category}</td><td>${p.condition}</td><td>${p.status}</td><td>${money(p.price)}</td></tr>`).join(''); document.querySelector('[data-inventory-summary]').textContent=`${items.length} items • ${items.filter(p=>p.status==='Sold').length} sold • ${money(items.reduce((s,p)=>s+Number(p.price||0),0))} listed value`; }
+function setupInventory(){ const form=document.querySelector('[data-inventory-form]'); if(!form) return; const cat=form.querySelector('[name="category"]'); const sku=form.querySelector('[name="sku"]'); const price=form.querySelector('[name="price"]'); const cost=form.querySelector('[name="cost"]'); const profit=document.querySelector('[data-profit]'); const update=()=>{ if(!sku.value) sku.value=nextSku(cat.value); profit.textContent=money(Number(price.value||0)-Number(cost.value||0)); }; cat.addEventListener('change',()=>{sku.value=nextSku(cat.value); update();}); price.addEventListener('input', update); cost.addEventListener('input', update); update(); form.addEventListener('submit',(e)=>{ e.preventDefault(); const fd=new FormData(form); const item=Object.fromEntries(fd.entries()); item.price=Number(item.price||0); item.cost=Number(item.cost||0); item.photo=item.photo||'◇'; const items=appProducts().filter(p=>p.sku!==item.sku); items.push(item); saveProducts(items); form.reset(); sku.value=''; update(); renderInventory(); renderShop(); renderAdmin(); }); }
+function setupForms(){ document.querySelectorAll('[data-save-form]').forEach((form)=>form.addEventListener('submit',(e)=>{e.preventDefault(); const key=form.dataset.saveForm; const items=JSON.parse(localStorage.getItem(key)||'[]'); items.push(Object.fromEntries(new FormData(form).entries())); localStorage.setItem(key,JSON.stringify(items)); form.reset(); form.querySelector('[data-form-status]').textContent='Saved in this browser preview.';})); }
+
+document.addEventListener('DOMContentLoaded',()=>{ updateBagCount(); renderShop(); renderBag(); renderAdmin(); renderInventory(); setupInventory(); setupForms(); document.querySelectorAll('[data-search],[data-filter]').forEach(el=>el.addEventListener('input',renderShop)); });
