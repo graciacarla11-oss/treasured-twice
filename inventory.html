@@ -1,147 +1,21 @@
 <!doctype html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<meta name="theme-color" content="#151116"/>
-<meta name="description" content="Treasured Twice LLC offers clean, affordable resale treasures at fair prices."/>
-<title>Inventory Manager | Treasured Twice</title>
-<link rel="manifest" href="manifest.json"/>
-<link rel="stylesheet" href="src/styles.css"/>
-</head>
-<body>
-<header class="site-header">
-<a class="brand-lockup" href="index.html" aria-label="Treasured Twice home">
-<span class="approved-logo-mini">TT</span>
-<span>
-<strong>Treasured Twice</strong>
-<small>Once Loved. Treasured Again.</small>
-</span>
-</a>
-<nav class="nav">
-<a href="index.html">Home</a>
+<html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/><meta name="theme-color" content="#1c777a"/><meta name="description" content="Static mobile-first website preview for Treasured Twice LLC."/><title>Inventory Manager | Treasured Twice LLC</title><link rel="manifest" href="manifest.json"/><link rel="stylesheet" href="src/styles.css"/></head>
+<body><header class="site-header"><a class="brand-lockup" href="index.html" aria-label="Treasured Twice home"><img src="treasured-twice-logo-opal.png.png" alt="Treasured Twice Hidden Gems logo"/><span><strong>Treasured Twice LLC</strong><small>Once loved. Treasured again.</small></span></a><nav class="nav"><a href="index.html">Home</a>
 <a href="shop.html">Shop</a>
 <a href="women.html">Women</a>
 <a href="men.html">Men</a>
 <a href="little-gems.html">Little Gems</a>
-<a href="donations.html">Donations</a>
-<a href="promise.html">Promise</a>
+<a href="shoes.html">Shoes</a>
+<a href="bags.html">Bags</a>
+<a href="accessories.html">Accessories</a>
+<a href="home-treasures.html">Home Treasures</a>
+<a href="donations.html">Item Contributions</a>
+<a href="promise.html">Clean Gem Promise</a>
 <a href="rewards.html">Rewards</a>
 <a href="about.html">About</a>
 <a href="contact.html">Contact</a>
 <a href="policies.html">Policies</a>
 <a href="admin.html">Admin</a>
-<a href="inventory.html">Inventory</a>
-</nav>
-</header>
-<main>
-<section class="page-hero">
-<h1>Inventory Manager</h1>
-<p data-inventory-summary>Loading inventory summary...</p>
-</section>
-<section class="section inventory-layout">
-<form class="form-card" data-inventory-form>
-<input name="sku" placeholder="SKU auto-generates">
-<input name="title" placeholder="Title" required>
-<select name="category">
-<option>Women</option>
-<option>Men</option>
-<option>Little Gems Newborn–12</option>
-<option>Shoes</option>
-<option>Bags</option>
-<option>Accessories</option>
-<option>Home Treasures</option>
-<option>Designer Gems</option>
-<option>Community Gems</option>
-<option>New With Tags</option>
-<option>Everyday Finds</option>
-</select>
-<select name="condition">
-<option>New With Tags</option>
-<option>Mint Condition</option>
-<option>Gem Condition</option>
-<option>Great Condition</option>
-<option>Good Condition</option>
-<option>Gently Used</option>
-<option>Needs Review</option>
-</select>
-<input name="cost" type="number" step="0.01" placeholder="Cost">
-<input name="price" type="number" step="0.01" placeholder="Selling price">
-<p>Estimated profit: <strong data-profit>$0.00</strong>
-</p>
-<select name="status">
-<option>Available</option>
-<option>Reserved</option>
-<option>Sold</option>
-</select>
-<input name="size" placeholder="Size">
-<input name="brand" placeholder="Brand">
-<input name="photo" placeholder="Photo path or symbol">
-<textarea name="notes" placeholder="Notes">
-</textarea>
-<button class="button primary">Add / Edit Product</button>
-</form>
-<div class="table-wrap">
-<table>
-<thead>
-<tr>
-<th>SKU</th>
-<th>Title</th>
-<th>Category</th>
-<th>Condition</th>
-<th>Status</th>
-<th>Price</th>
-</tr>
-</thead>
-<tbody data-inventory-table>
-</tbody>
-</table>
-</div>
-</section>
-
-<section class="section card-grid">
-<article>
-<h2>Edit Product Area</h2>
-<p>To edit a product in this static preview, enter the same SKU in the form, update the fields, and choose Add / Edit Product. The saved browser copy will replace the matching SKU.</p>
-</article>
-<article>
-<h2>Search & Filters</h2>
-<div class="shop-tools"><input data-inventory-search placeholder="Search inventory table by SKU, title, category, status..."/><select data-inventory-status><option>All Statuses</option><option>Available</option><option>Reserved</option><option>Sold</option></select></div>
-</article>
-<article>
-<h2>Sold Item Tracker</h2>
-<p data-sold-tracker>Loading sold item tracker...</p>
-</article>
-<article>
-<h2>Daily Task Checklist</h2>
-<label><input type="checkbox"> Inspect new arrivals</label><br>
-<label><input type="checkbox"> Wash / steam approved items</label><br>
-<label><input type="checkbox"> Photograph and label condition</label><br>
-<label><input type="checkbox"> Post new finds</label>
-</article>
-<article>
-<h2>Donation Intake Tracker</h2>
-<p data-donation-tracker>Loading donation intake tracker...</p>
-</article>
-<article>
-<h2>Supplier / Source Tracker</h2>
-<textarea placeholder="Track sources: community contributions, estate cleanouts, approved supplier lots, family-friendly finds..."></textarea>
-</article>
-</section>
-</main>
-<nav class="bottom-nav">
-<a href="index.html">Home</a>
-<a href="shop.html">Shop</a>
-<a href="donations.html">Donate</a>
-<a href="rewards.html">Rewards</a>
-<a href="admin.html">Admin</a>
-</nav>
-<footer>
-<p>© 2026 Treasured Twice LLC • hello@shoptreasuredtwice.com • Static preview only. No checkout, payment processing, Stripe, Shopify, Wix, login, authentication, or database is connected.</p>
-</footer>
-<script src="products.js">
-</script>
-<script src="script.js">
-</script>
-</body>
-</html>
+<a href="inventory.html">Inventory</a></nav></header><main><section class="page-hero"><h1>Inventory Manager</h1><p>Local preview inventory tool. Information is saved only in this browser localStorage.</p></section><section class="section inventory-layout"><form class="form-card" data-inventory-form><input name="sku" placeholder="SKU"><input name="title" placeholder="Item title" required><select name="category"><option>Women</option><option>Men</option><option>Little Gems Newborn–12</option><option>Shoes</option><option>Bags</option><option>Accessories</option><option>Home Treasures</option><option>Community Gems</option><option>Everyday Finds</option><option>New With Tags</option><option>Designer Gems</option><option>Fill-a-Bag Day</option><option>Treasure Chest Rewards</option></select><input name="size" placeholder="Size"><input name="brand" placeholder="Brand"><input name="condition" placeholder="Condition"><select name="status"><option>Available</option><option>Reserved</option><option>Sold</option></select><input name="price" type="number" step="0.01" placeholder="Price"><input name="cost" type="number" step="0.01" placeholder="Cost"><input name="photo" placeholder="Photo symbol"><textarea name="notes" placeholder="Public item notes"></textarea><p>Estimated profit: <strong data-profit>$0.00</strong></p><button class="button primary">Save item locally</button></form><div><div class="shop-tools"><input data-inventory-search placeholder="Search inventory"><select data-inventory-status><option>All Statuses</option><option>Available</option><option>Reserved</option><option>Sold</option></select></div><p data-inventory-summary></p><p data-sold-tracker></p><p data-donation-tracker></p><div class="table-wrap"><table><tbody data-inventory-table></tbody></table></div></div></section></main><nav class="bottom-nav">
+<a href="index.html">Home</a><a href="shop.html">Shop</a><a href="donations.html">Contribute</a><a href="rewards.html">Rewards</a><a href="admin.html">Admin</a>
+</nav><footer><p>© 2026 Treasured Twice LLC • hello@shoptreasuredtwice.com • shoptreasuredtwice.com • Static preview only. No checkout, payment processing, login, authentication, customer database, or private owner information is connected.</p></footer><script src="products.js"></script><script src="script.js"></script></body></html>

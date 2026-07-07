@@ -2,7 +2,7 @@ window.TT_PRODUCTS = [
   { sku:'TT-001', title:'Rose Knit Cardigan', category:'Women', price:18, size:'M', brand:'A New Day', condition:'Gem Condition', status:'Available', photo:'◇', notes:'Soft neutral layering piece.' },
   { sku:'CG-001', title:'Community Denim Jacket', category:'Community Gems', price:16, size:'L', brand:'Universal Thread', condition:'Great Condition', status:'Available', photo:'✦', notes:'Approved item contribution find.' },
   { sku:'DG-001', title:'Designer Silk Scarf', category:'Designer Gems', price:34, size:'OS', brand:'Coach', condition:'Mint Condition', status:'Reserved', photo:'◆', notes:'Authenticated-style review pending before sale.' },
-  { sku:'LG-001', title:'Little Gems Pajama Set', category:'Little Gems Newborn–12', price:7, size:'4T', brand:'Carter’s', condition:'Gently Used', status:'Available', photo:'♡', notes:'Washed and folded.' },
+  { sku:'LG-001', title:'Little Gems Pajama Set', category:'Little Gems Newborn–12', price:7, size:'4T', brand:'Carter’s', condition:'Good Condition', status:'Available', photo:'♡', notes:'Reviewed and folded.' },
   { sku:'HOME-001', title:'Pearl Ceramic Vase', category:'Home Treasures', price:12, size:'Small', brand:'Unbranded', condition:'Gem Condition', status:'Available', photo:'◇', notes:'No chips or cracks.' },
   { sku:'BAG-001', title:'Everyday Crossbody Bag', category:'Bags', price:14, size:'OS', brand:'Mossimo', condition:'Good Condition', status:'Sold', photo:'✧', notes:'Light corner wear disclosed.' },
   { sku:'SHOE-001', title:'Black Ankle Boots', category:'Shoes', price:22, size:'8', brand:'Time and Tru', condition:'Great Condition', status:'Available', photo:'◈', notes:'Clean soles, minor creasing.' },

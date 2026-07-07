@@ -3,7 +3,7 @@ const pages=['index.html','shop.html','product.html','women.html','men.html','li
 const missing=pages.filter((p)=>!existsSync(p) && !existsSync(`src/${p}`));
 if(missing.length) throw new Error(`Missing required files: ${missing.join(', ')}`);
 const all=pages.filter(p=>p.endsWith('.html')).map(p=>readFileSync(p,'utf8')).join('\n');
-const required=['Treasured Twice','Once Loved. Treasured Again.','Hidden Gems','hello@shoptreasuredtwice.com','Clean Gem Promise','Little Gems','Treasure Chest Rewards','Admin Dashboard','Inventory Manager'];
+const required=['Treasured Twice','Once loved. Treasured again.','Hidden Gems','hello@shoptreasuredtwice.com','Clean Gem Promise','Little Gems','Treasure Chest Rewards','Admin / Inventory Manager','Inventory Manager'];
 const absent=required.filter(t=>!all.includes(t));
 if(absent.length) throw new Error(`Missing content: ${absent.join(', ')}`);
 const forbidden=['Warm Resale '+String.fromCharCode(66,111,117,116,105,113,117,101),'warm resale '+String.fromCharCode(98,111,117,116,105,113,117,101)];
