@@ -1,5 +1,5 @@
 import { readFileSync, existsSync } from 'node:fs';
-const pages=['index.html','shop.html','product.html','women.html','men.html','little-gems.html','shoes.html','bags.html','accessories.html','home-treasures.html','donations.html','promise.html','rewards.html','about.html','contact.html','policies.html','admin.html','inventory.html','styles.css','script.js','products.js','manifest.json','README.md'];
+const pages=['index.html','shop.html','product.html','women.html','men.html','little-gems.html','shoes.html','bags.html','accessories.html','home-treasures.html','hidden-gems.html','clearance.html','donations.html','promise.html','rewards.html','about.html','contact.html','policies.html','admin.html','inventory.html','styles.css','script.js','products.js','manifest.json','README.md'];
 const missing=pages.filter((p)=>!existsSync(p) && !existsSync(`src/${p}`));
 if(missing.length) throw new Error(`Missing required files: ${missing.join(', ')}`);
 const all=pages.filter(p=>p.endsWith('.html')).map(p=>readFileSync(p,'utf8')).join('\n');
