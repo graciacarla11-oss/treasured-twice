@@ -5,10 +5,10 @@ const productGrid = document.getElementById('product-grid');
 
 if (productGrid) {
   const products = [
-    { name: 'Pearl-Tag Blouse', category: 'New Arrivals • Women', price: '$8–$16', condition: 'Carefully selected' },
+    { name: 'Pearl-Tag Blouse', category: 'New Arrivals • Women', price: '$8–$16', condition: 'Curated find' },
     { name: 'Little Gems Play Bundle', category: 'Kids/Baby/Youth • Little Gems by Treasured²', price: '$5–$14', condition: 'Washed and checked when appropriate' },
-    { name: 'Cozy Home Basket', category: 'Home Treasures • Decor', price: '$6–$18', condition: 'Clean-ready notes planned' },
-    { name: 'Weekend Tote Find', category: 'Accessories • Treasured Twice LLC', price: '$7–$15', condition: 'Gently loved with light wear notes' },
+    { name: 'Cozy Home Basket', category: 'Home Treasures • Decor', price: '$6–$18', condition: 'Ready-for-review notes planned' },
+    { name: 'Weekend Tote Find', category: 'Accessories • Treasured Twice LLC', price: '$7–$15', condition: 'Good condition with light wear notes' },
   ];
 
   productGrid.innerHTML = products.map((product) => `
