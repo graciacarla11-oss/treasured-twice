@@ -12,9 +12,9 @@ This repo contains a beginner-friendly static site with HTML pages, CSS, public 
 
 Home, Shop, Women, Men, Little Gems Children’s Collection, Shoes, Bags, Accessories, Home Treasures, Hidden Gems, Clearance, Item Contributions, Clean Gem Promise, Rewards / Fill-a-Bag Days, About, Contact, and Policies.
 
-## Official logo status
+## Official logos
 
-The approved Treasured Twice LLC heart logo file is not present in this repository yet. Do not use the older winged logo or redraw, recolor, crop, or replace the approved heart logo. Add the exact supplied heart logo file before turning logo display back on.
+The repository includes the exact approved Treasured Twice LLC heart logo and the separate Little Gems children's collection logo. Do not redraw, recolor, crop, or replace either supplied logo.
 
 ## Current limitations
 
