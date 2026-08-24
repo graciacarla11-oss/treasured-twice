@@ -219,6 +219,7 @@ main { width: min(1180px, calc(100% - 1.2rem)); margin: 1rem auto 0; }
 .category-showcase, .card-grid, .product-grid, .dashboard-grid, .mini-grid { display: grid; gap: 1rem; }
 .category-showcase { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .card-grid, .dashboard-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+.contact-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); max-width: 960px; margin-left: auto; margin-right: auto; }
 .product-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
 .mini-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 1rem 0; }
 .category-card, .card-grid > article, .glass-card, .product-card, .dashboard-card, .form-card, .bag-panel {

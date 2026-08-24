@@ -10,9 +10,26 @@ const all=pages.map(p=>readFileSync(p,'utf8')).join('\n');
 const required=['Treasured Twice','Once Loved, Treasured Again.','Hidden Gems','hello@shoptreasuredtwice.com','Clean Gem Promise','Little Gems','Treasure Chest Rewards'];
 const absent=required.filter(t=>!all.includes(t));
 if(absent.length) throw new Error(`Missing content: ${absent.join(', ')}`);
-const forbidden=['Fresh Finds','fresh finds','Once loved. Treasured again.','Admin / Inventory Manager','Inventory Manager','href="admin.html"','href="inventory.html"','data-product-grid','data-inventory-form','Saved Request Bag','<form','data-save-form','data-form-status','Warm Resale '+String.fromCharCode(66,111,117,116,105,113,117,101),'warm resale '+String.fromCharCode(98,111,117,116,105,113,117,101)];
+const forbidden=['Fresh Finds','fresh finds','Once loved. Treasured again.','Admin / Inventory Manager','Inventory Manager','href="admin.html"','href="inventory.html"','data-product-grid','data-inventory-form','Saved Request Bag','<form','data-save-form','data-form-status','(c) 2026','Warm Resale '+String.fromCharCode(66,111,117,116,105,113,117,101),'warm resale '+String.fromCharCode(98,111,117,116,105,113,117,101)];
 const present=forbidden.filter(t=>all.includes(t));
 if(present.length) throw new Error(`Forbidden content found: ${present.join(', ')}`);
+const canonicalNavLinks=['index.html','shop.html','women.html','men.html','little-gems.html','about.html','contact.html','policies.html'];
+for(const page of pages.filter(p=>p.endsWith('.html'))){
+  const html=readFileSync(page,'utf8');
+  const nav=html.match(/<nav class="nav"[^>]*>([\s\S]*?)<\/nav>/);
+  if(!nav) throw new Error(`Missing primary navigation: ${page}`);
+  if(!nav[0].includes('aria-label="Primary navigation"')) throw new Error(`Primary navigation is missing its accessible label: ${page}`);
+  const links=[...nav[1].matchAll(/href="([^"]+)"/g)].map(m=>m[1]);
+  if(JSON.stringify(links)!==JSON.stringify(canonicalNavLinks)) throw new Error(`Inconsistent primary navigation: ${page}`);
+}
+if(!['shoes.html','bags.html','accessories.html','home-treasures.html','hidden-gems.html','clearance.html'].every(link=>readFileSync('shop.html','utf8').includes(`href="${link}"`))) throw new Error('Shop page is missing one or more specialty section links');
+const forbiddenPublic=['Static preview','static preview','app-like','phone-app style','Launch Preview','public item listings listings'];
+const publicCopyFound=forbiddenPublic.filter(text=>publicHtml.includes(text));
+if(publicCopyFound.length) throw new Error(`Outdated public copy found: ${publicCopyFound.join(', ')}`);
+const expectedFooter='© 2026 Treasured Twice LLC • Once Loved, Treasured Again.';
+const pagesWithOldFooter=pages.filter(page=>page.endsWith('.html')&&!readFileSync(page,'utf8').includes(expectedFooter));
+if(pagesWithOldFooter.length) throw new Error(`Pages missing the approved footer: ${pagesWithOldFooter.join(', ')}`);
+if(!readFileSync('contact.html','utf8').includes('class="section card-grid contact-grid"')) throw new Error('Contact page is missing its two-column layout');
 const pagesMissingMainLogo=pages.filter(p=>p.endsWith('.html')&&!readFileSync(p,'utf8').includes('assets/logos/main/treasured-twice-official.jpeg'));
 if(pagesMissingMainLogo.length) throw new Error(`Pages missing official main logo: ${pagesMissingMainLogo.join(', ')}`);
 if(!readFileSync('little-gems.html','utf8').includes('assets/logos/little-gems/little-gems-official.png')) throw new Error('Little Gems page is missing its official logo');
