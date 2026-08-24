@@ -10,7 +10,7 @@ const all=pages.map(p=>readFileSync(p,'utf8')).join('\n');
 const required=['Treasured Twice','Once Loved, Treasured Again.','Hidden Gems','hello@shoptreasuredtwice.com','Clean Gem Promise','Little Gems','Treasure Chest Rewards'];
 const absent=required.filter(t=>!all.includes(t));
 if(absent.length) throw new Error(`Missing content: ${absent.join(', ')}`);
-const forbidden=['Fresh Finds','fresh finds','Once loved. Treasured again.','Admin / Inventory Manager','Inventory Manager','href="admin.html"','href="inventory.html"','data-product-grid','data-inventory-form','Saved Request Bag','Warm Resale '+String.fromCharCode(66,111,117,116,105,113,117,101),'warm resale '+String.fromCharCode(98,111,117,116,105,113,117,101)];
+const forbidden=['Fresh Finds','fresh finds','Once loved. Treasured again.','Admin / Inventory Manager','Inventory Manager','href="admin.html"','href="inventory.html"','data-product-grid','data-inventory-form','Saved Request Bag','<form','data-save-form','data-form-status','Warm Resale '+String.fromCharCode(66,111,117,116,105,113,117,101),'warm resale '+String.fromCharCode(98,111,117,116,105,113,117,101)];
 const present=forbidden.filter(t=>all.includes(t));
 if(present.length) throw new Error(`Forbidden content found: ${present.join(', ')}`);
 const pagesMissingMainLogo=pages.filter(p=>p.endsWith('.html')&&!readFileSync(p,'utf8').includes('assets/logos/main/treasured-twice-official.jpeg'));
