@@ -23,7 +23,7 @@ for(const page of pages.filter(p=>p.endsWith('.html'))){
   if(JSON.stringify(links)!==JSON.stringify(canonicalNavLinks)) throw new Error(`Inconsistent primary navigation: ${page}`);
 }
 if(!['shoes.html','bags.html','accessories.html','home-treasures.html','hidden-gems.html','clearance.html'].every(link=>readFileSync('shop.html','utf8').includes(`href="${link}"`))) throw new Error('Shop page is missing one or more specialty section links');
-const forbiddenPublic=['Static preview','static preview','app-like','phone-app style','Launch Preview','public item listings listings'];
+const forbiddenPublic=['Static preview','static preview','Public preview','public preview','app-like','phone-app style','Launch Preview','launch preview','Coming Soon','coming soon','Website Launch','launch updates','sneak peek','Sneak peek','online checkout is being prepared','not yet available','will appear here when available','public item listings listings'];
 const publicCopyFound=forbiddenPublic.filter(text=>publicHtml.includes(text));
 if(publicCopyFound.length) throw new Error(`Outdated public copy found: ${publicCopyFound.join(', ')}`);
 const expectedFooter='© 2026 Treasured Twice LLC • Once Loved, Treasured Again.';
