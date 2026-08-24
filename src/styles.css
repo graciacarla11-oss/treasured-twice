@@ -294,7 +294,6 @@ textarea { min-height: 120px; }
 }
 .dashboard-card span { display: block; color: var(--muted); font-weight: 900; }
 .dashboard-card strong { display: block; margin-top: .5rem; font-size: 2rem; }
-.inventory-layout { display: grid; grid-template-columns: minmax(280px, 420px) 1fr; gap: 1rem; }
 .table-wrap { overflow: auto; border-radius: 20px; background: rgba(255,255,255,.86); }
 table { width: 100%; border-collapse: collapse; }
 th, td { padding: .8rem; border-bottom: 1px solid rgba(28,119,122,.14); text-align: left; white-space: nowrap; }
@@ -331,7 +330,7 @@ footer { width: min(1180px, calc(100% - 1.2rem)); margin: 1rem auto 2rem; color:
 
 @media (max-width: 1080px) {
   .category-showcase, .product-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
-  .hero, .inventory-layout, .split-section { grid-template-columns: 1fr; }
+  .hero, .split-section { grid-template-columns: 1fr; }
   .hero { min-height: auto; }
   .hero-art { min-height: 460px; }
 }

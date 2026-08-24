@@ -2,21 +2,25 @@
 
 Static, mobile-first website and business platform preview for **Treasured Twice LLC** at **shoptreasuredtwice.com**.
 
-Tagline: **Once loved. Treasured again.**
+Tagline: **Once Loved, Treasured Again.**
 
 ## What already exists
 
-This repo contains a beginner-friendly static site with HTML pages, CSS, JavaScript preview behavior, sample inventory data, local preview forms, a manifest, and a static QA script. It does not contain a backend application.
+This repo contains a beginner-friendly static site with HTML pages, CSS, public page copy, a manifest, and a static QA script. It does not contain a backend application.
 
 ## Included pages
 
-Home, Shop, Women, Men, Little Gems Children’s Collection, Shoes, Bags, Accessories, Home Treasures, Item Contributions, Clean Gem Promise, Rewards / Fill-a-Bag Days, About, Contact, Policies, Admin / Inventory Manager, Inventory Manager, and Product Detail.
+Home, Shop, Women, Men, Little Gems Children’s Collection, Shoes, Bags, Accessories, Home Treasures, Hidden Gems, Clearance, Item Contributions, Clean Gem Promise, Rewards / Fill-a-Bag Days, About, Contact, and Policies.
+
+## Official logos
+
+The repository includes the exact approved Treasured Twice LLC heart logo and the separate Little Gems children's collection logo. Do not redraw, recolor, crop, or replace either supplied logo.
 
 ## Current limitations
 
 This is a static preview only. There are no real payments, checkout, login, authentication, backend database, customer database, private owner records, EIN, permit number, home address, bank information, or passwords.
 
-Forms, the request bag, and inventory manager save only in the current browser through localStorage for preview purposes. Do not enter sensitive private information.
+Public item listings, admin tools, checkout, payments, login, backend storage, and private owner tools are not linked or exposed on the public site.
 
 Treasured Twice LLC is not a nonprofit and does not issue tax-deductible donation receipts.
 
@@ -41,8 +45,6 @@ The build command runs `scripts/check-site.mjs` to confirm required pages/conten
 
 - Edit page copy directly in the matching `.html` file.
 - Edit colors, spacing, cards, and mobile layout in `src/styles.css`.
-- Edit preview inventory in `products.js`.
-- Edit local preview interactions in `script.js`.
 
 ## Publish with GitHub Pages
 
