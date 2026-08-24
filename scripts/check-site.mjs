@@ -23,6 +23,13 @@ for(const page of pages.filter(p=>p.endsWith('.html'))){
   if(JSON.stringify(links)!==JSON.stringify(canonicalNavLinks)) throw new Error(`Inconsistent primary navigation: ${page}`);
 }
 if(!['shoes.html','bags.html','accessories.html','home-treasures.html','hidden-gems.html','clearance.html'].every(link=>readFileSync('shop.html','utf8').includes(`href="${link}"`))) throw new Error('Shop page is missing one or more specialty section links');
+const forbiddenPublic=['Static preview','static preview','app-like','phone-app style','Launch Preview','public item listings listings'];
+const publicCopyFound=forbiddenPublic.filter(text=>publicHtml.includes(text));
+if(publicCopyFound.length) throw new Error(`Outdated public copy found: ${publicCopyFound.join(', ')}`);
+const expectedFooter='© 2026 Treasured Twice LLC • Once Loved, Treasured Again.';
+const pagesWithOldFooter=pages.filter(page=>page.endsWith('.html')&&!readFileSync(page,'utf8').includes(expectedFooter));
+if(pagesWithOldFooter.length) throw new Error(`Pages missing the approved footer: ${pagesWithOldFooter.join(', ')}`);
+if(!readFileSync('contact.html','utf8').includes('class="section card-grid contact-grid"')) throw new Error('Contact page is missing its two-column layout');
 const pagesMissingMainLogo=pages.filter(p=>p.endsWith('.html')&&!readFileSync(p,'utf8').includes('assets/logos/main/treasured-twice-official.jpeg'));
 if(pagesMissingMainLogo.length) throw new Error(`Pages missing official main logo: ${pagesMissingMainLogo.join(', ')}`);
 if(!readFileSync('little-gems.html','utf8').includes('assets/logos/little-gems/little-gems-official.png')) throw new Error('Little Gems page is missing its official logo');

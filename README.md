@@ -1,6 +1,6 @@
 # Treasured Twice LLC
 
-Static, mobile-first website and business platform preview for **Treasured Twice LLC** at **shoptreasuredtwice.com**.
+Mobile-first website and business platform for **Treasured Twice LLC** at **shoptreasuredtwice.com**.
 
 Tagline: **Once Loved, Treasured Again.**
 
@@ -18,7 +18,7 @@ The repository includes the exact approved Treasured Twice LLC heart logo and th
 
 ## Current limitations
 
-This is a static preview only. There are no real payments, checkout, login, authentication, backend database, customer database, private owner records, EIN, permit number, home address, bank information, or passwords.
+This is a static website only. There are no real payments, checkout, login, authentication, backend database, customer database, private owner records, EIN, permit number, home address, bank information, or passwords.
 
 Public item listings, admin tools, checkout, payments, login, backend storage, and private owner tools are not linked or exposed on the public site.
 
