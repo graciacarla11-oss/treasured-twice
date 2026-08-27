@@ -10,7 +10,7 @@ This repo contains a beginner-friendly static site with HTML pages, CSS, public 
 
 ## Included pages
 
-Home, Shop, Women, Men, Little Gems Children’s Collection, Shoes, Bags, Accessories, Home Treasures, Hidden Gems, Clearance, Item Contributions, Clean Gem Promise, Rewards / Fill-a-Bag Days, About, Contact, and Policies.
+The customer-facing navigation uses exactly three retail collections: Women’s Collection, Men’s Collection, and Little Gems Children’s Collection. Supporting pages include About, Contact, and Policies. The repository also retains its collections overview and existing specialty URLs for link stability.
 
 ## Official logos
 
