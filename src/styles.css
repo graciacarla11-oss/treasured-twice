@@ -387,3 +387,38 @@ a:focus-visible, button:focus-visible {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* A quiet two-part brand introduction: logo left, name and tagline right. */
+.brand-hero {
+  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  gap: clamp(1rem, 4vw, 4rem);
+  min-height: 0;
+  padding: clamp(1rem, 3vw, 2.5rem) 0;
+  margin: clamp(1.5rem, 5vw, 4rem) 0;
+  overflow: visible;
+}
+.brand-hero .hero-art { min-height: 0; }
+.brand-hero .logo-card { max-width: 420px; margin: 0; }
+.brand-hero .hero-copy { min-width: 0; max-width: none; }
+.brand-hero h1 {
+  margin: 0;
+  font-size: clamp(1.1rem, 4.8vw, 3.6rem);
+  font-weight: 750;
+  letter-spacing: -.035em;
+  line-height: 1.15;
+  white-space: nowrap;
+}
+.brand-hero .tagline {
+  margin: clamp(.5rem, 1.5vw, 1.25rem) 0 0;
+  font-size: clamp(.625rem, 1.8vw, 1.35rem);
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: nowrap;
+}
+.brand-intro {
+  max-width: 700px;
+  margin: 0 auto clamp(3rem, 7vw, 6rem);
+  padding: 0 1rem;
+  text-align: center;
+}
+.brand-intro .lead { margin-bottom: 1.75rem; }
