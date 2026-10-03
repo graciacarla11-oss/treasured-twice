@@ -40,8 +40,19 @@ for(const page of pages.filter(p=>p.endsWith('.html'))){
   if(JSON.stringify(bottomItems)!==JSON.stringify(canonicalBottomNavItems)) throw new Error('Inconsistent bottom navigation: '+page);
 }
 const collectionsPage=readFileSync('shop.html','utf8');
-const collectionLinks=['women.html','men.html','little-gems.html'];
-if(!collectionLinks.every(link=>collectionsPage.includes('href="'+link+'"'))) throw new Error('Collections overview is missing a primary collection link');
+const overviewMain=collectionsPage.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
+if(!overviewMain) throw new Error('Collections overview is missing its main content');
+const overviewCards=[...overviewMain.matchAll(/<article\b[^>]*>([\s\S]*?)<\/article>/g)];
+const expectedCollectionItems=canonicalNavItems.slice(0,3);
+if(overviewCards.length!==expectedCollectionItems.length) throw new Error('Collections overview must contain exactly three collection cards');
+for(const [index,card] of overviewCards.entries()){
+  const [href,label]=expectedCollectionItems[index];
+  const heading=card[1].match(/<h3>([^<]+)<\/h3>/)?.[1];
+  const links=[...card[1].matchAll(/<a\b[^>]*href="([^" ]+)"[^>]*>([^<]+)<\/a>/g)].map(m=>[m[1],m[2]]);
+  if(heading!==label || JSON.stringify(links)!==JSON.stringify([[href,'View '+label]])) throw new Error('Invalid collection overview card: '+label);
+}
+const overviewLinks=[...overviewMain.matchAll(/href="([^" ]+)"/g)].map(m=>m[1]);
+if(JSON.stringify(overviewLinks)!==JSON.stringify(expectedCollectionItems.map(item=>item[0]))) throw new Error('Collections overview must link only to its three collections');
 const retiredOverviewLinks=['shoes.html','bags.html','accessories.html','home-treasures.html','hidden-gems.html','clearance.html'];
 if(retiredOverviewLinks.some(link=>collectionsPage.includes('href="'+link+'"'))) throw new Error('Collections overview contains a retired specialty section link');
 const forbiddenPublic=['Static preview','static preview','Public preview','public preview','app-like','phone-app style','Launch Preview','launch preview','Coming Soon','coming soon','Website Launch','launch updates','sneak peek','Sneak peek','online checkout is being prepared','not yet available','will appear here when available','public item listings listings'];
