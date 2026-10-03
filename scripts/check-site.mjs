@@ -7,22 +7,54 @@ const missingLogos=officialLogos.filter((p)=>!existsSync(p));
 if(missingLogos.length) throw new Error(`Missing official logos: ${missingLogos.join(', ')}`);
 const publicHtml=pages.filter(p=>p.endsWith('.html')).map(p=>readFileSync(p,'utf8')).join('\n');
 const all=pages.map(p=>readFileSync(p,'utf8')).join('\n');
-const required=['Treasured Twice','Once Loved, Treasured Again.','Hidden Gems','hello@shoptreasuredtwice.com','Clean Gem Promise','Little Gems','Treasure Chest Rewards'];
+const required=['Treasured Twice','Once Loved, Treasured Again.',"Women's Collection","Men's Collection","Little Gems Children's Collection",'Hidden Gems','hello@shoptreasuredtwice.com','Clean Gem Promise','Treasure Chest Rewards'];
 const absent=required.filter(t=>!all.includes(t));
 if(absent.length) throw new Error(`Missing content: ${absent.join(', ')}`);
 const forbidden=['Fresh Finds','fresh finds','Once loved. Treasured again.','Admin / Inventory Manager','Inventory Manager','href="admin.html"','href="inventory.html"','data-product-grid','data-inventory-form','Saved Request Bag','<form','data-save-form','data-form-status','(c) 2026','Warm Resale '+String.fromCharCode(66,111,117,116,105,113,117,101),'warm resale '+String.fromCharCode(98,111,117,116,105,113,117,101)];
 const present=forbidden.filter(t=>all.includes(t));
 if(present.length) throw new Error(`Forbidden content found: ${present.join(', ')}`);
-const canonicalNavLinks=['index.html','shop.html','women.html','men.html','little-gems.html','about.html','contact.html','policies.html'];
+const canonicalNavItems=[
+  ['women.html',"Women's Collection"],
+  ['men.html',"Men's Collection"],
+  ['little-gems.html',"Little Gems Children's Collection"],
+  ['about.html','About'],
+  ['contact.html','Contact'],
+  ['policies.html','Policies']
+];
+const canonicalBottomNavItems=[
+  ['women.html',"Women's Collection"],
+  ['men.html',"Men's Collection"],
+  ['little-gems.html',"Little Gems Children's Collection"],
+  ['contact.html','Contact']
+];
 for(const page of pages.filter(p=>p.endsWith('.html'))){
   const html=readFileSync(page,'utf8');
   const nav=html.match(/<nav class="nav"[^>]*>([\s\S]*?)<\/nav>/);
-  if(!nav) throw new Error(`Missing primary navigation: ${page}`);
-  if(!nav[0].includes('aria-label="Primary navigation"')) throw new Error(`Primary navigation is missing its accessible label: ${page}`);
-  const links=[...nav[1].matchAll(/href="([^"]+)"/g)].map(m=>m[1]);
-  if(JSON.stringify(links)!==JSON.stringify(canonicalNavLinks)) throw new Error(`Inconsistent primary navigation: ${page}`);
+  if(!nav) throw new Error('Missing primary navigation: '+page);
+  if(!nav[0].includes('aria-label="Primary navigation"')) throw new Error('Primary navigation is missing its accessible label: '+page);
+  const items=[...nav[1].matchAll(/<a href="([^"]+)">([^<]+)<\/a>/g)].map(m=>[m[1],m[2]]);
+  if(JSON.stringify(items)!==JSON.stringify(canonicalNavItems)) throw new Error('Inconsistent primary navigation: '+page);
+  const bottomNav=html.match(/<nav class="bottom-nav"[^>]*>([\s\S]*?)<\/nav>/);
+  if(!bottomNav) throw new Error('Missing bottom navigation: '+page);
+  const bottomItems=[...bottomNav[1].matchAll(/<a href="([^"]+)">([^<]+)<\/a>/g)].map(m=>[m[1],m[2]]);
+  if(JSON.stringify(bottomItems)!==JSON.stringify(canonicalBottomNavItems)) throw new Error('Inconsistent bottom navigation: '+page);
 }
-if(!['shoes.html','bags.html','accessories.html','home-treasures.html','hidden-gems.html','clearance.html'].every(link=>readFileSync('shop.html','utf8').includes(`href="${link}"`))) throw new Error('Shop page is missing one or more specialty section links');
+const collectionsPage=readFileSync('shop.html','utf8');
+const overviewMain=collectionsPage.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
+if(!overviewMain) throw new Error('Collections overview is missing its main content');
+const overviewCards=[...overviewMain.matchAll(/<article\b[^>]*>([\s\S]*?)<\/article>/g)];
+const expectedCollectionItems=canonicalNavItems.slice(0,3);
+if(overviewCards.length!==expectedCollectionItems.length) throw new Error('Collections overview must contain exactly three collection cards');
+for(const [index,card] of overviewCards.entries()){
+  const [href,label]=expectedCollectionItems[index];
+  const heading=card[1].match(/<h3>([^<]+)<\/h3>/)?.[1];
+  const links=[...card[1].matchAll(/<a\b[^>]*href="([^" ]+)"[^>]*>([^<]+)<\/a>/g)].map(m=>[m[1],m[2]]);
+  if(heading!==label || JSON.stringify(links)!==JSON.stringify([[href,'View '+label]])) throw new Error('Invalid collection overview card: '+label);
+}
+const overviewLinks=[...overviewMain.matchAll(/href="([^" ]+)"/g)].map(m=>m[1]);
+if(JSON.stringify(overviewLinks)!==JSON.stringify(expectedCollectionItems.map(item=>item[0]))) throw new Error('Collections overview must link only to its three collections');
+const retiredOverviewLinks=['shoes.html','bags.html','accessories.html','home-treasures.html','hidden-gems.html','clearance.html'];
+if(retiredOverviewLinks.some(link=>collectionsPage.includes('href="'+link+'"'))) throw new Error('Collections overview contains a retired specialty section link');
 const forbiddenPublic=['Static preview','static preview','Public preview','public preview','app-like','phone-app style','Launch Preview','launch preview','Coming Soon','coming soon','Website Launch','launch updates','sneak peek','Sneak peek','online checkout is being prepared','not yet available','will appear here when available','public item listings listings'];
 const publicCopyFound=forbiddenPublic.filter(text=>publicHtml.includes(text));
 if(publicCopyFound.length) throw new Error(`Outdated public copy found: ${publicCopyFound.join(', ')}`);
