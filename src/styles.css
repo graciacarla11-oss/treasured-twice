@@ -394,7 +394,7 @@ a:focus-visible, button:focus-visible {
 .site-header .nav { width: 100%; gap: .75rem 1.75rem; }
 main { width: min(1320px, calc(100% - 3rem)); }
 .brand-hero {
-  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
   gap: clamp(2rem, 4vw, 4rem);
   min-height: 0;
   padding: 0;
@@ -402,13 +402,13 @@ main { width: min(1320px, calc(100% - 3rem)); }
   overflow: visible;
 }
 .brand-hero .hero-art { min-height: 0; }
-.brand-hero .logo-card { width: 100%; max-width: 620px; margin: 0; }
+.brand-hero .logo-card { width: 100%; max-width: 800px; margin: 0; }
 .brand-hero .hero-copy { min-width: 0; max-width: none; container-type: inline-size; }
 .brand-hero h1 {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
   font-size: clamp(.875rem, 3.8vw, 3.65rem);
-  font-size: clamp(.875rem, 9cqi, 3.65rem);
+  font-size: clamp(.65rem, 9cqi, 3.65rem);
   font-weight: 400;
   letter-spacing: -.025em;
   line-height: 1.2;
@@ -446,7 +446,7 @@ main > .section { margin-bottom: clamp(5rem, 10vw, 9rem); }
   .category-showcase .category-card:nth-child(2) { margin-top: 2.5rem; margin-bottom: -2.5rem; }
 }
 @media (max-width: 800px) {
-  .brand-hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(.75rem, 3vw, 1.5rem); margin-top: 2.5rem; }
+  .brand-hero { grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr); gap: clamp(.75rem, 3vw, 1.5rem); margin-top: 2.5rem; }
   .brand-hero .logo-card { width: 100%; }
   .brand-hero .tagline { margin-top: clamp(.65rem, 2vw, 1.2rem); font-size: clamp(.75rem, 2.4vw, 1.2rem); line-height: 1.6; }
   .category-showcase { grid-template-columns: 1fr; gap: 3rem; }
@@ -456,4 +456,8 @@ main > .section { margin-bottom: clamp(5rem, 10vw, 9rem); }
   main { width: calc(100% - 2rem); }
   .site-header { padding: 1rem; }
   .site-header .nav { gap: .5rem 1rem; }
+}
+
+@media (max-width: 480px) {
+  .brand-hero { width: calc(100% + 1rem); margin-left: -.5rem; gap: .5rem; }
 }
