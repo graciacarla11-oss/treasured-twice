@@ -403,11 +403,12 @@ main { width: min(1320px, calc(100% - 3rem)); }
 }
 .brand-hero .hero-art { min-height: 0; }
 .brand-hero .logo-card { width: 100%; max-width: 620px; margin: 0; }
-.brand-hero .hero-copy { min-width: 0; max-width: none; }
+.brand-hero .hero-copy { min-width: 0; max-width: none; container-type: inline-size; }
 .brand-hero h1 {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.75rem, 4.3vw, 3.65rem);
+  font-size: clamp(.875rem, 3.8vw, 3.65rem);
+  font-size: clamp(.875rem, 9cqi, 3.65rem);
   font-weight: 400;
   letter-spacing: -.025em;
   line-height: 1.2;
@@ -445,10 +446,9 @@ main > .section { margin-bottom: clamp(5rem, 10vw, 9rem); }
   .category-showcase .category-card:nth-child(2) { margin-top: 2.5rem; margin-bottom: -2.5rem; }
 }
 @media (max-width: 800px) {
-  .brand-hero { grid-template-columns: 1fr; gap: 2.5rem; margin-top: 2.5rem; }
-  .brand-hero .logo-card { width: min(100%, 520px); }
-  .brand-hero h1 { font-size: clamp(1.65rem, 6.3vw, 3.1rem); }
-  .brand-hero .tagline { margin-top: 1.2rem; font-size: clamp(1rem, 3vw, 1.4rem); }
+  .brand-hero { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: clamp(.75rem, 3vw, 1.5rem); margin-top: 2.5rem; }
+  .brand-hero .logo-card { width: 100%; }
+  .brand-hero .tagline { margin-top: clamp(.65rem, 2vw, 1.2rem); font-size: clamp(.75rem, 2.4vw, 1.2rem); line-height: 1.6; }
   .category-showcase { grid-template-columns: 1fr; gap: 3rem; }
   .category-showcase .category-card { min-height: 250px; }
 }
