@@ -388,49 +388,72 @@ a:focus-visible, button:focus-visible {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 
-/* A quiet two-part brand introduction: logo left, name and tagline right. */
+/* Open brand composition and independently floating collection cards. */
+.site-header, .nav { justify-content: center; }
+.site-header { padding: 1.5rem clamp(1rem, 4vw, 3rem); }
+.site-header .nav { width: 100%; gap: .75rem 1.75rem; }
+main { width: min(1320px, calc(100% - 3rem)); }
 .brand-hero {
-  grid-template-columns: minmax(0, .6fr) minmax(0, 1.4fr);
-  gap: clamp(1rem, 4vw, 4rem);
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+  gap: clamp(2rem, 4vw, 4rem);
   min-height: 0;
-  padding: clamp(1rem, 3vw, 2.5rem) 0;
-  margin: clamp(1.5rem, 5vw, 4rem) 0;
+  padding: 0;
+  margin: clamp(3rem, 7vw, 6rem) 0 clamp(5rem, 10vw, 9rem);
   overflow: visible;
 }
 .brand-hero .hero-art { min-height: 0; }
-.brand-hero .logo-card { max-width: 420px; margin: 0; }
+.brand-hero .logo-card { width: 100%; max-width: 620px; margin: 0; }
 .brand-hero .hero-copy { min-width: 0; max-width: none; }
 .brand-hero h1 {
   margin: 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(1.125rem, 5.2vw, 4.5rem);
+  font-size: clamp(1.75rem, 4.3vw, 3.65rem);
   font-weight: 400;
   letter-spacing: -.025em;
-  line-height: 1.15;
+  line-height: 1.2;
   white-space: nowrap;
 }
 .brand-hero .tagline {
-  margin: clamp(.5rem, 1.5vw, 1.25rem) 0 0;
+  margin: 1.5rem 0 0;
   font-family: Georgia, "Times New Roman", serif;
-  font-size: clamp(.75rem, 1.9vw, 1.6rem);
+  font-size: clamp(1rem, 1.8vw, 1.5rem);
   font-weight: 400;
   font-style: italic;
-  line-height: 1.5;
-  white-space: nowrap;
+  line-height: 1.6;
 }
-.brand-intro {
-  max-width: 700px;
-  margin: 0 auto clamp(3rem, 7vw, 6rem);
-  padding: 0 1rem;
-  text-align: center;
+main > .section { margin-bottom: clamp(5rem, 10vw, 9rem); }
+.collection-section { padding: 0 0 3rem; overflow: visible; }
+.collection-section .section-heading { margin: 0 auto 4rem; text-align: center; }
+.collection-section h2 { font-family: Georgia, "Times New Roman", serif; font-weight: 400; letter-spacing: -.02em; }
+.category-showcase { gap: clamp(2rem, 4vw, 4rem); }
+.category-showcase .category-card {
+  min-height: 290px;
+  padding: clamp(1.75rem, 3vw, 2.75rem);
+  gap: 2.5rem;
+  border: 1px solid rgba(251,226,213,.38);
+  background: rgba(255,255,255,.035);
+  border-radius: 30px;
+  box-shadow: 0 22px 42px rgba(8,35,44,.25);
+  transition: transform .2s ease, box-shadow .2s ease;
 }
-.brand-intro .lead { margin-bottom: 1.75rem; }
-
-/* The top bar contains navigation only; all branding lives in the hero. */
-.site-header, .nav { justify-content: center; }
-.site-header .nav { width: 100%; }
+.category-showcase .category-card span { font-family: Georgia, "Times New Roman", serif; font-size: 1.7rem; font-weight: 400; line-height: 1.3; }
+.category-showcase .category-card strong { font-weight: 400; line-height: 1.8; }
+.category-showcase .category-card:hover { transform: translateY(-6px); box-shadow: 0 30px 50px rgba(8,35,44,.3); }
+.split-section, .card-grid { gap: 3rem; }
+.split-section > article, .card-grid > article { padding: clamp(1.5rem, 3vw, 3rem); }
+@media (min-width: 1081px) {
+  .category-showcase .category-card:nth-child(2) { margin-top: 2.5rem; margin-bottom: -2.5rem; }
+}
+@media (max-width: 800px) {
+  .brand-hero { grid-template-columns: 1fr; gap: 2.5rem; margin-top: 2.5rem; }
+  .brand-hero .logo-card { width: min(100%, 520px); }
+  .brand-hero h1 { font-size: clamp(1.65rem, 6.3vw, 3.1rem); }
+  .brand-hero .tagline { margin-top: 1.2rem; font-size: clamp(1rem, 3vw, 1.4rem); }
+  .category-showcase { grid-template-columns: 1fr; gap: 3rem; }
+  .category-showcase .category-card { min-height: 250px; }
+}
 @media (max-width: 480px) {
-  .brand-hero { grid-template-columns: minmax(0, .45fr) minmax(0, 1.55fr); gap: .75rem; }
-  .brand-hero h1 { font-size: clamp(1.125rem, 5.2vw, 1.6rem); }
-  .brand-hero .tagline { font-size: clamp(.7rem, 2.7vw, .85rem); }
+  main { width: calc(100% - 2rem); }
+  .site-header { padding: 1rem; }
+  .site-header .nav { gap: .5rem 1rem; }
 }

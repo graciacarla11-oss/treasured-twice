@@ -18,8 +18,7 @@ const canonicalNavItems=[
   ['men.html',"Men's Collection"],
   ['little-gems.html',"Little Gems Children's Collection"],
   ['about.html','About'],
-  ['contact.html','Contact'],
-  ['policies.html','Policies']
+  ['contact.html','Contact']
 ];
 const canonicalBottomNavItems=[
   ['women.html',"Women's Collection"],
