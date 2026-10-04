@@ -66,8 +66,8 @@ if(!readFileSync('index.html','utf8').includes('assets/logos/main/treasured-twic
 for(const page of pages.filter(p=>p.endsWith('.html'))){
   const html=readFileSync(page,'utf8');
   const header=html.match(/<header\b[^>]*>([\s\S]*?)<\/header>/)?.[1];
-  if(!header || !header.includes('href="index.html" aria-label="Treasured Twice home"') || !header.includes('<strong>Treasured Twice LLC</strong>')) throw new Error('Missing header home link: '+page);
-  if(/<img\b|Once Loved, Treasured Again\./.test(header)) throw new Error('Header contains a duplicate logo or tagline: '+page);
+  if(!header) throw new Error('Missing site header: '+page);
+  if(/<img\b|brand-lockup|Treasured Twice LLC|Once Loved, Treasured Again\./.test(header)) throw new Error('Header contains a duplicate logo or tagline: '+page);
 }
 if(!readFileSync('little-gems.html','utf8').includes('assets/logos/little-gems/little-gems-official.png')) throw new Error('Little Gems page is missing its official logo');
 const forbiddenFiles=['admin.html','inventory.html','product.html','products.js','script.js'];

@@ -390,7 +390,7 @@ a:focus-visible, button:focus-visible {
 
 /* A quiet two-part brand introduction: logo left, name and tagline right. */
 .brand-hero {
-  grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr);
+  grid-template-columns: minmax(0, .6fr) minmax(0, 1.4fr);
   gap: clamp(1rem, 4vw, 4rem);
   min-height: 0;
   padding: clamp(1rem, 3vw, 2.5rem) 0;
@@ -402,16 +402,19 @@ a:focus-visible, button:focus-visible {
 .brand-hero .hero-copy { min-width: 0; max-width: none; }
 .brand-hero h1 {
   margin: 0;
-  font-size: clamp(1.1rem, 4.8vw, 3.6rem);
-  font-weight: 750;
-  letter-spacing: -.035em;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(1.125rem, 5.2vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: -.025em;
   line-height: 1.15;
   white-space: nowrap;
 }
 .brand-hero .tagline {
   margin: clamp(.5rem, 1.5vw, 1.25rem) 0 0;
-  font-size: clamp(.625rem, 1.8vw, 1.35rem);
-  font-weight: 500;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: clamp(.75rem, 1.9vw, 1.6rem);
+  font-weight: 400;
+  font-style: italic;
   line-height: 1.5;
   white-space: nowrap;
 }
@@ -422,3 +425,12 @@ a:focus-visible, button:focus-visible {
   text-align: center;
 }
 .brand-intro .lead { margin-bottom: 1.75rem; }
+
+/* The top bar contains navigation only; all branding lives in the hero. */
+.site-header, .nav { justify-content: center; }
+.site-header .nav { width: 100%; }
+@media (max-width: 480px) {
+  .brand-hero { grid-template-columns: minmax(0, .45fr) minmax(0, 1.55fr); gap: .75rem; }
+  .brand-hero h1 { font-size: clamp(1.125rem, 5.2vw, 1.6rem); }
+  .brand-hero .tagline { font-size: clamp(.7rem, 2.7vw, .85rem); }
+}
