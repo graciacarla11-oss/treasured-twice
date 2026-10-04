@@ -62,8 +62,13 @@ const expectedFooter='© 2026 Treasured Twice LLC • Once Loved, Treasured Agai
 const pagesWithOldFooter=pages.filter(page=>page.endsWith('.html')&&!readFileSync(page,'utf8').includes(expectedFooter));
 if(pagesWithOldFooter.length) throw new Error(`Pages missing the approved footer: ${pagesWithOldFooter.join(', ')}`);
 if(!readFileSync('contact.html','utf8').includes('class="section card-grid contact-grid"')) throw new Error('Contact page is missing its two-column layout');
-const pagesMissingMainLogo=pages.filter(p=>p.endsWith('.html')&&!readFileSync(p,'utf8').includes('assets/logos/main/treasured-twice-official.jpeg'));
-if(pagesMissingMainLogo.length) throw new Error(`Pages missing official main logo: ${pagesMissingMainLogo.join(', ')}`);
+if(!readFileSync('index.html','utf8').includes('assets/logos/main/treasured-twice-official.jpeg')) throw new Error('Homepage is missing its official main logo');
+for(const page of pages.filter(p=>p.endsWith('.html'))){
+  const html=readFileSync(page,'utf8');
+  const header=html.match(/<header\b[^>]*>([\s\S]*?)<\/header>/)?.[1];
+  if(!header || !header.includes('href="index.html" aria-label="Treasured Twice home"') || !header.includes('<strong>Treasured Twice LLC</strong>')) throw new Error('Missing header home link: '+page);
+  if(/<img\b|Once Loved, Treasured Again\./.test(header)) throw new Error('Header contains a duplicate logo or tagline: '+page);
+}
 if(!readFileSync('little-gems.html','utf8').includes('assets/logos/little-gems/little-gems-official.png')) throw new Error('Little Gems page is missing its official logo');
 const forbiddenFiles=['admin.html','inventory.html','product.html','products.js','script.js'];
 const exposed=forbiddenFiles.filter(existsSync);
