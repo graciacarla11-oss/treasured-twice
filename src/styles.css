@@ -479,3 +479,20 @@ main { width: min(1360px, calc(100% - 4rem)); }
   .collection-tile:hover { transform: none; }
   .collection-tile:hover .collection-art::after { animation: none; }
 }
+
+/* The official artwork is the sole introduction and accessible page heading. */
+.brand-hero {
+  grid-template-columns: minmax(0, 1fr);
+  width: 100%;
+  gap: 0;
+  margin: clamp(2rem, 4vw, 4rem) 0 clamp(4rem, 7vw, 7rem);
+}
+.brand-hero .hero-art { width: 100%; min-height: 0; }
+.brand-hero .logo-card {
+  width: 100%;
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 0;
+  line-height: 0;
+}
+.brand-hero .logo-card img { width: 100%; height: auto; display: block; }
