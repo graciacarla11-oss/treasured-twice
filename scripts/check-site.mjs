@@ -17,9 +17,11 @@ const canonicalNavItems=[
   ['women.html',"Women's Collection"],
   ['men.html',"Men's Collection"],
   ['little-gems.html',"Little Gems Children's Collection"],
+  ['home-treasures.html','Home Décor'],
+  ['accessories.html','Accessories'],
+  ['shoes.html','Shoes'],
   ['about.html','About'],
-  ['contact.html','Contact'],
-  ['policies.html','Policies']
+  ['contact.html','Contact']
 ];
 const canonicalBottomNavItems=[
   ['women.html',"Women's Collection"],
@@ -43,8 +45,8 @@ const collectionsPage=readFileSync('shop.html','utf8');
 const overviewMain=collectionsPage.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
 if(!overviewMain) throw new Error('Collections overview is missing its main content');
 const overviewCards=[...overviewMain.matchAll(/<article\b[^>]*>([\s\S]*?)<\/article>/g)];
-const expectedCollectionItems=canonicalNavItems.slice(0,3);
-if(overviewCards.length!==expectedCollectionItems.length) throw new Error('Collections overview must contain exactly three collection cards');
+const expectedCollectionItems=canonicalNavItems.slice(0,6);
+if(overviewCards.length!==expectedCollectionItems.length) throw new Error('Collections overview must contain exactly six collection cards');
 for(const [index,card] of overviewCards.entries()){
   const [href,label]=expectedCollectionItems[index];
   const heading=card[1].match(/<h3>([^<]+)<\/h3>/)?.[1];
@@ -52,8 +54,8 @@ for(const [index,card] of overviewCards.entries()){
   if(heading!==label || JSON.stringify(links)!==JSON.stringify([[href,'View '+label]])) throw new Error('Invalid collection overview card: '+label);
 }
 const overviewLinks=[...overviewMain.matchAll(/href="([^" ]+)"/g)].map(m=>m[1]);
-if(JSON.stringify(overviewLinks)!==JSON.stringify(expectedCollectionItems.map(item=>item[0]))) throw new Error('Collections overview must link only to its three collections');
-const retiredOverviewLinks=['shoes.html','bags.html','accessories.html','home-treasures.html','hidden-gems.html','clearance.html'];
+if(JSON.stringify(overviewLinks)!==JSON.stringify(expectedCollectionItems.map(item=>item[0]))) throw new Error('Collections overview must link only to its six collections');
+const retiredOverviewLinks=['bags.html','hidden-gems.html','clearance.html'];
 if(retiredOverviewLinks.some(link=>collectionsPage.includes('href="'+link+'"'))) throw new Error('Collections overview contains a retired specialty section link');
 const forbiddenPublic=['Static preview','static preview','Public preview','public preview','app-like','phone-app style','Launch Preview','launch preview','Coming Soon','coming soon','Website Launch','launch updates','sneak peek','Sneak peek','online checkout is being prepared','not yet available','will appear here when available','public item listings listings'];
 const publicCopyFound=forbiddenPublic.filter(text=>publicHtml.includes(text));
@@ -62,8 +64,13 @@ const expectedFooter='© 2026 Treasured Twice LLC • Once Loved, Treasured Agai
 const pagesWithOldFooter=pages.filter(page=>page.endsWith('.html')&&!readFileSync(page,'utf8').includes(expectedFooter));
 if(pagesWithOldFooter.length) throw new Error(`Pages missing the approved footer: ${pagesWithOldFooter.join(', ')}`);
 if(!readFileSync('contact.html','utf8').includes('class="section card-grid contact-grid"')) throw new Error('Contact page is missing its two-column layout');
-const pagesMissingMainLogo=pages.filter(p=>p.endsWith('.html')&&!readFileSync(p,'utf8').includes('assets/logos/main/treasured-twice-official.jpeg'));
-if(pagesMissingMainLogo.length) throw new Error(`Pages missing official main logo: ${pagesMissingMainLogo.join(', ')}`);
+if(!readFileSync('index.html','utf8').includes('assets/logos/main/treasured-twice-official.jpeg')) throw new Error('Homepage is missing its official main logo');
+for(const page of pages.filter(p=>p.endsWith('.html'))){
+  const html=readFileSync(page,'utf8');
+  const header=html.match(/<header\b[^>]*>([\s\S]*?)<\/header>/)?.[1];
+  if(!header) throw new Error('Missing site header: '+page);
+  if(/<img\b|brand-lockup|Treasured Twice LLC|Once Loved, Treasured Again\./.test(header)) throw new Error('Header contains a duplicate logo or tagline: '+page);
+}
 if(!readFileSync('little-gems.html','utf8').includes('assets/logos/little-gems/little-gems-official.png')) throw new Error('Little Gems page is missing its official logo');
 const forbiddenFiles=['admin.html','inventory.html','product.html','products.js','script.js'];
 const exposed=forbiddenFiles.filter(existsSync);
