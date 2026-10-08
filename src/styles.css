@@ -438,6 +438,7 @@ main { width: min(1360px, calc(100% - 4rem)); }
 .faceted-gem::after { content: ""; position: absolute; inset: 19%; border: 1px solid rgba(255,255,255,.6); background: linear-gradient(135deg,rgba(255,255,255,.38),transparent); }
 .blue { --gem-color: #a4ccdf; } .pearl { --gem-color: #e5ddc7; } .pink { --gem-color: #d9afd9; } .gold { --gem-color: #dbbf9b; }
 .collection-art img { display: block; width: 100%; height: 100%; object-fit: contain; }
+.collection-art.collection-art--home-decor { aspect-ratio: 1163 / 1175; }
 .collection-caption { position: relative; padding: 1.7rem 1.8rem 0 .35rem; }
 .collection-caption h3 { font: 400 clamp(1.4rem,2vw,1.9rem)/1.3 Georgia,serif; letter-spacing: -.02em; margin-bottom: .8rem; }
 .collection-caption p { font-size: .88rem; line-height: 1.65; color: var(--muted); margin: 0; }
