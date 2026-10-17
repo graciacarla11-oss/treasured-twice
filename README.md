@@ -41,6 +41,12 @@ npm run build
 
 The build command runs `scripts/check-site.mjs` to confirm required pages/content and catch broken internal links.
 
+It also runs the Treasure List URL and activation tests. Use `npm test` to run those tests alone.
+
+## Treasure List subscriptions
+
+The homepage invitation is restored; automated subscriptions are **not active**. The button remains disabled until an owner-controlled Mailchimp hosted form is configured and verified. See [Treasure List setup](docs/treasure-list-setup.md) for account configuration, testing, and activation. No API keys or subscriber records belong in this static repository.
+
 ## Edit the site
 
 - Edit page copy directly in the matching `.html` file.

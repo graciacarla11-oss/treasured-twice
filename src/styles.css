@@ -497,3 +497,48 @@ main { width: min(1360px, calc(100% - 4rem)); }
   line-height: 0;
 }
 .brand-hero .logo-card img { width: 100%; height: auto; display: block; }
+
+/* One homepage invitation, on the same teal canvas as the collections. */
+.treasure-list {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  justify-items: center;
+  gap: 1.1rem;
+  width: 100%;
+  max-width: 820px;
+  margin: 0 auto clamp(3rem, 6vw, 6rem);
+  padding: clamp(2rem, 5vw, 4rem) clamp(1rem, 4vw, 3rem);
+  border: 1px solid transparent;
+  border-radius: 24px;
+  background: linear-gradient(var(--logo-teal), var(--logo-teal)) padding-box,
+    linear-gradient(125deg, #f3dfcf, #bce9e5, #c6b1df, #fff6de, #b6dfe1, #dbadd7) border-box;
+  text-align: center;
+  overflow: visible;
+}
+.treasure-list > * { min-width: 0; max-width: 100%; margin: 0; }
+.treasure-list .eyebrow { font-size: .7rem; font-weight: 500; line-height: 1.7; letter-spacing: .16em; }
+.treasure-list h2 { font: 400 clamp(1.85rem, 4vw, 3rem)/1.2 Georgia, serif; letter-spacing: -.025em; text-wrap: balance; }
+.treasure-list-description { max-width: 48ch; color: var(--muted); font-size: 1rem; line-height: 1.75; }
+.treasure-list-action { display: flex; justify-content: center; width: 100%; padding-block: .35rem; }
+.treasure-list-button {
+  width: min(100%, 20rem);
+  min-height: 48px;
+  padding: .9rem 1.15rem;
+  color: var(--midnight);
+  background: linear-gradient(115deg, #f3dfcf, #c5efeb, #e8ddfb, #fff4df);
+  border-color: transparent;
+  font-weight: 500;
+  line-height: 1.5;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.treasure-list-button:disabled { cursor: not-allowed; opacity: 1; transform: none; }
+.treasure-list-button:hover { transform: none; }
+.treasure-list-button[href]:hover { text-decoration: underline; text-underline-offset: .25em; }
+.treasure-list-status { max-width: 52ch; color: var(--muted); font-size: .875rem; line-height: 1.7; }
+.treasure-list [hidden] { display: none !important; }
+
+/* Collection pages retain their item-enquiry card without a signup promotion. */
+.card-grid.collection-details { grid-template-columns: minmax(0, 1fr); max-width: 760px; margin-inline: auto; }
+.contact-grid > article { min-width: 0; }
+.contact-grid .button { max-width: 100%; text-align: center; white-space: normal; overflow-wrap: anywhere; }

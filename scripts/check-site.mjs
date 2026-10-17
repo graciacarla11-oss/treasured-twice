@@ -1,4 +1,6 @@
 import { readFileSync, existsSync } from 'node:fs';
+import { treasureListConfig } from '../src/treasure-list-config.mjs';
+import { validateSignupUrl } from '../src/treasure-list.mjs';
 const pages=['index.html','shop.html','women.html','men.html','little-gems.html','shoes.html','bags.html','accessories.html','home-treasures.html','hidden-gems.html','clearance.html','donations.html','promise.html','rewards.html','about.html','contact.html','policies.html','styles.css','manifest.json','README.md'];
 const missing=pages.filter((p)=>!existsSync(p) && !existsSync(`src/${p}`));
 if(missing.length) throw new Error(`Missing required files: ${missing.join(', ')}`);
@@ -31,6 +33,7 @@ const canonicalBottomNavItems=[
 ];
 for(const page of pages.filter(p=>p.endsWith('.html'))){
   const html=readFileSync(page,'utf8');
+  if(page !== 'index.html' && /treasure(?:\s|%20)+list|treasure-list/i.test(html)) throw new Error('Treasure List must appear only on the homepage: '+page);
   const nav=html.match(/<nav class="nav"[^>]*>([\s\S]*?)<\/nav>/);
   if(!nav) throw new Error('Missing primary navigation: '+page);
   if(!nav[0].includes('aria-label="Primary navigation"')) throw new Error('Primary navigation is missing its accessible label: '+page);
@@ -78,4 +81,19 @@ if(exposed.length) throw new Error(`Public inventory/admin preview files should 
 const hrefs=[...publicHtml.matchAll(/href="([^"]+)"/g)].map(m=>m[1]).filter(h=>!h.startsWith('#')&&!h.startsWith('mailto:')&&!h.startsWith('http'));
 const broken=hrefs.filter(h=>!existsSync(h));
 if(broken.length) throw new Error(`Broken links: ${[...new Set(broken)].join(', ')}`);
+const sources=[...publicHtml.matchAll(/src="([^"]+)"/g)].map(m=>m[1]);
+const missingSources=sources.filter(src=>!src.startsWith('https:') && !existsSync(src));
+if(missingSources.length) throw new Error(`Missing assets/scripts: ${[...new Set(missingSources)].join(', ')}`);
+const home=readFileSync('index.html','utf8');
+if((home.match(/id="treasure-list"/g)||[]).length !== 1 || !home.includes('<h2 id="treasure-list-title">Join the Treasure List</h2>')) throw new Error('Homepage must have exactly one titled Treasure List section');
+if(!/<button\b[^>]*id="treasure-list-pending"[^>]*\sdisabled>/.test(home)) throw new Error('Signup must be disabled without JavaScript or verified configuration');
+const signupLink=home.match(/<a\b[^>]*id="treasure-list-link"[^>]*>/)?.[0];
+if(!signupLink || !/\shidden>/.test(signupLink) || /\shref=/.test(signupLink)) throw new Error('Signup link must start hidden without a destination');
+if(!home.includes('type="module" src="src/treasure-list.mjs"')) throw new Error('Missing homepage signup module');
+if(treasureListConfig.hostedSignupUrl && !validateSignupUrl(treasureListConfig.hostedSignupUrl)) throw new Error('Unsupported or unsafe hosted signup URL');
+if(typeof treasureListConfig.signupVerified !== 'boolean' || (treasureListConfig.signupVerified && !validateSignupUrl(treasureListConfig.hostedSignupUrl))) throw new Error('Verified signup requires a valid hosted form URL');
+const contact=readFileSync('contact.html','utf8');
+for(const href of ['mailto:hello@shoptreasuredtwice.com?subject=Item%20Request','mailto:hello@shoptreasuredtwice.com?subject=Customer%20Question']) {
+  if(!contact.includes(`href="${href}"`)) throw new Error('Missing customer contact option: '+href);
+}
 console.log('Static site QA check passed.');
