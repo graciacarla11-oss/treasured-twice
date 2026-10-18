@@ -1,7 +1,7 @@
-import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync, readdirSync } from 'node:fs';
 import { treasureListConfig } from '../src/treasure-list-config.mjs';
 import { validateSignupUrl } from '../src/treasure-list.mjs';
-const pages=['index.html','shop.html','women.html','men.html','little-gems.html','shoes.html','bags.html','accessories.html','home-treasures.html','hidden-gems.html','clearance.html','donations.html','promise.html','rewards.html','about.html','contact.html','policies.html','styles.css','manifest.json','README.md'];
+const pages=['index.html','shop.html','women.html','men.html','little-gems.html','shoes.html','bags.html','accessories.html','home-treasures.html','electronics.html','pets.html','hidden-gems.html','clearance.html','donations.html','promise.html','rewards.html','about.html','contact.html','policies.html','styles.css','manifest.json','README.md'];
 const missing=pages.filter((p)=>!existsSync(p) && !existsSync(`src/${p}`));
 if(missing.length) throw new Error(`Missing required files: ${missing.join(', ')}`);
 const officialLogos=['assets/logos/main/treasured-twice-official.jpeg','assets/logos/little-gems/little-gems-official.png'];
@@ -16,12 +16,14 @@ const forbidden=['Fresh Finds','fresh finds','Once loved. Treasured again.','Adm
 const present=forbidden.filter(t=>all.includes(t));
 if(present.length) throw new Error(`Forbidden content found: ${present.join(', ')}`);
 const canonicalNavItems=[
+  ['index.html','Home'],
+  ['shop.html','Shop'],
   ['women.html',"Women's Collection"],
   ['men.html',"Men's Collection"],
   ['little-gems.html',"Little Gems Children's Collection"],
   ['home-treasures.html','Home Décor'],
-  ['accessories.html','Accessories'],
-  ['shoes.html','Shoes'],
+  ['electronics.html','Electronics'],
+  ['pets.html','Pets'],
   ['about.html','About'],
   ['contact.html','Contact']
 ];
@@ -48,7 +50,7 @@ const collectionsPage=readFileSync('shop.html','utf8');
 const overviewMain=collectionsPage.match(/<main\b[^>]*>([\s\S]*?)<\/main>/)?.[1];
 if(!overviewMain) throw new Error('Collections overview is missing its main content');
 const overviewCards=[...overviewMain.matchAll(/<article\b[^>]*>([\s\S]*?)<\/article>/g)];
-const expectedCollectionItems=canonicalNavItems.slice(0,6);
+const expectedCollectionItems=canonicalNavItems.slice(2,8);
 if(overviewCards.length!==expectedCollectionItems.length) throw new Error('Collections overview must contain exactly six collection cards');
 for(const [index,card] of overviewCards.entries()){
   const [href,label]=expectedCollectionItems[index];
@@ -79,12 +81,67 @@ const forbiddenFiles=['admin.html','inventory.html','product.html','products.js'
 const exposed=forbiddenFiles.filter(existsSync);
 if(exposed.length) throw new Error(`Public inventory/admin preview files should not exist: ${exposed.join(', ')}`);
 const hrefs=[...publicHtml.matchAll(/href="([^"]+)"/g)].map(m=>m[1]).filter(h=>!h.startsWith('#')&&!h.startsWith('mailto:')&&!h.startsWith('http'));
-const broken=hrefs.filter(h=>!existsSync(h));
+const broken=hrefs.filter(h=>!existsSync(h.split('#')[0]));
 if(broken.length) throw new Error(`Broken links: ${[...new Set(broken)].join(', ')}`);
 const sources=[...publicHtml.matchAll(/src="([^"]+)"/g)].map(m=>m[1]);
 const missingSources=sources.filter(src=>!src.startsWith('https:') && !existsSync(src));
 if(missingSources.length) throw new Error(`Missing assets/scripts: ${[...new Set(missingSources)].join(', ')}`);
 const home=readFileSync('index.html','utf8');
+const homeCollections=home.match(/<div class="emporium-grid">([\s\S]*?)<\/section>/)?.[1] || '';
+const homeCards=[...homeCollections.matchAll(/<a class="collection-tile [^"]+" href="([^"]+)">([\s\S]*?)<\/a>/g)];
+if(homeCards.length!==6) throw new Error('Homepage must have exactly six collection cards');
+for(const [index, card] of homeCards.entries()) {
+  const [href,label]=expectedCollectionItems[index];
+  if(card[1]!==href || !card[2].includes('<h3>'+label+'</h3>') || !card[2].includes('<img ')) throw new Error('Invalid homepage collection or missing artwork: '+label);
+}
+if(/Pet Supplies/i.test(publicHtml)) throw new Error('The public collection name must be Pets');
+for(const page of ['women.html','men.html','little-gems.html']) {
+  const html=readFileSync(page,'utf8');
+  for(const section of ['clothing','shoes','accessories']) {
+    if(!html.includes('href="#'+section+'"') || !html.includes('id="'+section+'"')) throw new Error('Missing nested collection section: '+page+'#'+section);
+  }
+}
+for(const [page,section] of [['shoes.html','shoes'],['accessories.html','accessories'],['bags.html','accessories']]) {
+  const html=readFileSync(page,'utf8');
+  for(const collection of ['women.html','men.html','little-gems.html']) {
+    if(!html.includes('href="'+collection+'#'+section+'"')) throw new Error('Legacy collection link is missing: '+page+' -> '+collection+'#'+section);
+  }
+}
+const collectionArtwork=[
+  ['women.html','assets/collections/womens-three-rows-updated.webp'],
+  ['men.html','assets/collections/mens-diamond.webp'],
+  ['little-gems.html','assets/logos/little-gems/little-gems-official.png'],
+  ['electronics.html','assets/collections/electronics-white.webp'],
+  ['pets.html','assets/collections/pets-paw-heart.webp']
+];
+for(const [page,asset] of collectionArtwork) {
+  for(const file of [page,'index.html','shop.html']) {
+    if(!readFileSync(file,'utf8').includes('src="'+asset+'"')) throw new Error('Inconsistent collection artwork: '+file+' / '+asset);
+  }
+}
+// Check fragment targets too: a file can exist while a section link is broken.
+let referenceCount=0;
+for(const page of readdirSync('.').filter(name=>name.endsWith('.html'))) {
+  if(!pages.includes(page)) throw new Error('Public page is missing from QA: '+page);
+  const html=readFileSync(page,'utf8');
+  const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(match=>match[1]);
+  if(new Set(ids).size!==ids.length) throw new Error('Duplicate HTML ids: '+page);
+  for(const match of html.matchAll(/\b(?:href|src)="([^"]+)"/g)) {
+    const url=match[1];
+    if(/^(?:https?:|mailto:|data:)/.test(url)) continue;
+    referenceCount++;
+    const [file,fragment]=url.split('#');
+    const target=file || page;
+    if(!existsSync(target)) throw new Error('Broken local reference: '+page+' -> '+url);
+    if(fragment && !readFileSync(target,'utf8').includes('id="'+decodeURIComponent(fragment)+'"')) throw new Error('Missing section target: '+page+' -> '+url);
+  }
+  for(const match of html.matchAll(/\baria-(?:labelledby|describedby)="([^"]+)"/g)) {
+    for(const id of match[1].split(/\s+/)) if(!ids.includes(id)) throw new Error('Missing accessible label/description: '+page+' -> '+id);
+  }
+  for(const match of html.matchAll(/<img\b[^>]*>/g)) {
+    if(!/\balt="[^"]*"/.test(match[0])) throw new Error('Image needs alt text or decorative alt: '+page);
+  }
+}
 if((home.match(/id="treasure-list"/g)||[]).length !== 1 || !home.includes('<h2 id="treasure-list-title">Join the Treasure List</h2>')) throw new Error('Homepage must have exactly one titled Treasure List section');
 if(!/<button\b[^>]*id="treasure-list-pending"[^>]*\sdisabled>/.test(home)) throw new Error('Signup must be disabled without JavaScript or verified configuration');
 const signupLink=home.match(/<a\b[^>]*id="treasure-list-link"[^>]*>/)?.[0];
@@ -96,4 +153,4 @@ const contact=readFileSync('contact.html','utf8');
 for(const href of ['mailto:hello@shoptreasuredtwice.com?subject=Item%20Request','mailto:hello@shoptreasuredtwice.com?subject=Customer%20Question']) {
   if(!contact.includes(`href="${href}"`)) throw new Error('Missing customer contact option: '+href);
 }
-console.log('Static site QA check passed.');
+console.log(`Static site QA passed: ${pages.filter(p=>p.endsWith('.html')).length} pages, ${referenceCount} local references, six collections and nested section links.`);
