@@ -10,7 +10,9 @@ This repo contains a beginner-friendly static site with HTML pages, CSS, public 
 
 ## Included pages
 
-The customer-facing navigation uses exactly three retail collections: Women’s Collection, Men’s Collection, and Little Gems Children’s Collection. Supporting pages include About, Contact, and Policies. The repository also retains its collections overview and existing specialty URLs for link stability.
+The customer-facing navigation and collection overview use six main collections: Women’s Collection, Men’s Collection, Little Gems Children’s Collection, Home Décor, Electronics, and Pets. Clothing, Shoes, and Accessories are sections inside each of the three clothing collections. The old Shoes, Accessories, and Bags URLs remain collection choosers for existing bookmarks. Supporting pages include About, Contact, and Policies.
+
+Electronics and Pets have dedicated pages with the previously supplied artwork and working email enquiry links. This branch has no product catalogue to migrate; category pages do not imply that any pictured item is in stock. See [collection organization and verification](docs/collection-organization.md).
 
 ## Official logos
 
@@ -40,6 +42,12 @@ npm run build
 ```
 
 The build command runs `scripts/check-site.mjs` to confirm required pages/content and catch broken internal links.
+
+It also runs the Treasure List URL and activation tests. Use `npm test` to run those tests alone.
+
+## Treasure List subscriptions
+
+The homepage invitation is restored; automated subscriptions are **not active**. The button remains disabled until an owner-controlled Mailchimp hosted form is configured and verified. See [Treasure List setup](docs/treasure-list-setup.md) for account configuration, testing, and activation. No API keys or subscriber records belong in this static repository.
 
 ## Edit the site
 
