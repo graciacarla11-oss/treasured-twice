@@ -43,11 +43,17 @@ npm run build
 
 The build command runs `scripts/check-site.mjs` to confirm required pages/content and catch broken internal links.
 
-It also runs the Treasure List URL and activation tests. Use `npm test` to run those tests alone.
+It also runs the Treasure List URL/activation tests and shipping-rule tests. Use `npm test` to run both suites.
 
 ## Treasure List subscriptions
 
 The homepage invitation is restored; automated subscriptions are **not active**. The button remains disabled until an owner-controlled Mailchimp hosted form is configured and verified. See [Treasure List setup](docs/treasure-list-setup.md) for account configuration, testing, and activation. No API keys or subscriber records belong in this static repository.
+
+## Shipping and delivery
+
+The Policies page explains free shipping at a merchandise subtotal of **$50 or more**, including exactly $50, and customer-paid shipping below $50. Tax and shipping do not count toward the threshold. `src/shipping.mjs` supplies independently tested rules for the separate secure checkout implementation; it does not activate checkout. Unknown shipping charges stay unresolved.
+
+See [shipping decisions and checkout handoff](docs/shipping-checkout-handoff.md) for unconfirmed rates, carriers, processing, coverage, discount treatment, and tracking, plus reconciliation of the separate saved cart’s older threshold. Keep this work draft-only.
 
 ## Edit the site
 
