@@ -605,3 +605,36 @@ main { width: min(1360px, calc(100% - 4rem)); }
 }
 /* Avoid sticky navigation obscuring content in a short landscape viewport. */
 @media (max-height: 500px) { .site-header { position: static; } }
+
+/* Policies reuse the boutique canvas, restrained type, and thin opal borders. */
+.policy-page { max-width: 1040px; }
+.policy-intro { text-align: center; padding-block: clamp(2rem, 5vw, 4rem); }
+.policy-intro h1 { font: 400 clamp(2.1rem, 5vw, 4rem)/1.18 Georgia, serif; letter-spacing: -.025em; }
+.policy-page .eyebrow { font-size: .7rem; letter-spacing: .16em; line-height: 1.7; font-weight: 500; }
+.policy-intro .collection-jump-links { justify-content: center; }
+.policy-sections { display: grid; gap: 1.5rem; max-width: 850px; margin: 0 auto 2rem; }
+.policy-panel {
+  min-width: 0;
+  padding: clamp(1.25rem, 4vw, 2.5rem);
+  border: 1px solid transparent;
+  border-radius: 24px;
+  background: linear-gradient(var(--logo-teal), var(--logo-teal)) padding-box,
+    linear-gradient(125deg, #f3dfcf, #bce9e5, #c6b1df, #fff6de, #b6dfe1, #dbadd7) border-box;
+  scroll-margin-top: 12rem;
+}
+.policy-panel h2, .policy-existing h2 { font: 400 clamp(1.5rem, 3vw, 2.1rem)/1.3 Georgia, serif; letter-spacing: -.02em; }
+.policy-page p, .policy-page li, .shipping-thresholds { line-height: 1.75; color: var(--muted); }
+.policy-page p:last-child { margin-bottom: 0; }
+.policy-page strong { color: var(--ink); font-weight: 600; }
+.policy-page ul { padding-inline-start: 1.3rem; }
+.policy-page li + li { margin-top: .5rem; }
+.policy-page a { overflow-wrap: anywhere; text-underline-offset: .25em; }
+.policy-page a:focus-visible { outline: 2px solid var(--pearl); outline-offset: 4px; }
+.shipping-thresholds { margin: 1.5rem 0; }
+.shipping-thresholds > div { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: .5rem 1.5rem; padding-block: 1rem; border-block-start: 1px solid var(--line); }
+.shipping-thresholds dt { color: var(--ink); font-weight: 500; }
+.shipping-thresholds dd { margin: 0; }
+.policy-existing { padding-inline: 0; }
+.policy-existing > article { min-width: 0; }
+@media (max-width: 760px) { .policy-panel { scroll-margin-top: 16rem; } }
+@media (max-width: 640px) { .shipping-thresholds > div { grid-template-columns: minmax(0, 1fr); } }
